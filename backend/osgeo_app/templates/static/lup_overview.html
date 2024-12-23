@@ -23,7 +23,7 @@
     <script src="https://apps.gov.bc.ca/pub/geomark/js/geomark.js" ></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wicket/1.3.4/wicket.min.js"></script>
 
-
+    <i data-feather="globe"></i>
 
     <script>
         // Initialize the map
@@ -91,7 +91,79 @@
         })
         .catch(error => console.error("Error fetching Gitanyow URL:", error));
 
+        const urlInputContainer = document.getElementById('url-input-container');
+        const urlInput = document.getElementById('url-input');
+        const submitUrlButton = document.getElementById('submit-url');
 
+        const globe_icon = feather.icons.globe.toSvg({
+            class: 'feather-icon',
+            width: 25,
+            height: 25
+        });
+
+        L.easyButton(globe_icon, function(btn, map){
+            if (urlInputContainer.style.display === 'none') {
+                urlInputContainer.style.display = 'block'; 
+            } else {
+                urlInputContainer.style.display = 'none'; 
+            }
+        }).addTo(map);
+
+        function getGeomarkFeature(geomarkId) {
+            var baseUrl = 'https://apps.gov.bc.ca/pub/geomark';
+            var client = new GeomarkClient(baseUrl);
+
+            client.getGeomarkInfo({
+                'geomarkId': geomarkId,
+                'callback': function(geomarkInfo) {
+                console.log('Geomark Type: ' + geomarkInfo.geometryType);
+                console.log('Number of Features: ' + geomarkInfo.numParts);
+                console.log('Resource Links: ' + geomarkInfo.resourceLinks);
+                }
+            })
+
+            client.getGeomarkFeature({
+                'geomarkId': geomarkId,
+                'srid': 4326,
+                'callback': function(geomarkFeature) {
+                    console.log('Geomark geometry:', geomarkFeature.geometry);
+            
+                    if (geomarkFeature.geometry) {
+                        try {
+                            var wktString = geomarkFeature.geometry.replace(/^SRID=\d+;/, '');
+                            console.log('Cleaned WKT String:', wktString);
+        
+                            var wicket = new Wkt.Wkt();
+                            wicket.read(wktString); //
+                            var geojsonFeature = wicket.toJson(); 
+                            L.geoJSON(geojsonFeature).addTo(map);
+                            map.fitBounds(L.geoJSON(geojsonFeature).getBounds());
+                        } catch (e) {
+                            console.error('Error parsing WKT:', e);
+                        }
+                    } else {
+                        console.error('No geometry found in the Geomark feature.');
+                    }
+                }
+            });
+        }
+
+        submitUrlButton.addEventListener('click', function() {
+            const url = urlInput.value.trim();
+            if (url) {
+                const geomarkIdMatch = url.match(/gm-[a-zA-Z0-9]+/);
+                if (geomarkIdMatch) {
+                    const geomarkId = geomarkIdMatch[0];
+                    getGeomarkFeature(geomarkId);
+                    urlInput.value = '';
+                    urlInputContainer.style.display = 'none';
+                } else {
+                    alert('Invalid Geomark URL. Please check the format.');
+                }
+            } else {
+                alert('Please enter a valid URL.');
+            }
+        }, { passive: true });
 
         // Function to create checkboxes dynamically based on jsonData
 // Function to create grouped checkboxes dynamically
