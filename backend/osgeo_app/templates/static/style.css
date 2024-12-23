@@ -672,6 +672,8 @@ h3.header-style {
 
 #url-input-container {
     position: absolute;
+    top: 575px;
+    left: 300px;
     display: none;
     background-color: white;
     padding: 10px;

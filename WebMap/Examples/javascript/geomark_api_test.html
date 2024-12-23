@@ -29,25 +29,25 @@
 
         #url-input-container {
             position: absolute;
-            top: 85px;
-            left: 55px;
             display: none;
             background-color: white;
             padding: 10px;
             border: 1px solid #ccc;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             z-index: 1000;
+            transform: translate(-50%, -50%); /* Center the div relative to the button */
         }
-
+        
         #url-input-container input {
             width: 300px;
             padding: 5px;
             margin-right: 5px;
         }
-
+        
         #url-input-container button {
             padding: 5px 5px;
         }
+        
         
 
     </style>
@@ -87,9 +87,9 @@
         maxZoom: 20
     }).addTo(map);
 
+    const geomarkButton = document.querySelector('.leaflet-bar button'); // Select the Geomark button
     const urlInputContainer = document.getElementById('url-input-container');
-    const urlInput = document.getElementById('url-input');
-    const submitUrlButton = document.getElementById('submit-url');
+
 
     const globe_icon = feather.icons.globe.toSvg({
         class: 'feather-icon',
@@ -97,11 +97,15 @@
         height: 25
     });
 
-    L.easyButton(globe_icon, function(btn, map){
+    L.easyButton(globe_icon, function (btn, map) {
+        // Toggle the visibility of the URL input container
         if (urlInputContainer.style.display === 'none') {
-            urlInputContainer.style.display = 'block'; 
+            const rect = btn._container.getBoundingClientRect(); // Get the button's position
+            urlInputContainer.style.top = `${rect.top + window.scrollY}px`; // Adjust for page scroll
+            urlInputContainer.style.left = `${rect.left + rect.width / 2}px`; // Center horizontally
+            urlInputContainer.style.display = 'block';
         } else {
-            urlInputContainer.style.display = 'none'; 
+            urlInputContainer.style.display = 'none';
         }
     }).addTo(map);
 
