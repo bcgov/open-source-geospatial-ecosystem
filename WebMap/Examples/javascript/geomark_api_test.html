@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geomark Test</title>
+    <style>
+        #overview {
+            height: 100vh;
+            width: 100%;
+        }
+
+        .feather-icon {
+            width: 25px;
+            height: 25px;
+        }
+
+        #url-input-container {
+            position: absolute;
+            top: 85px;
+            left: 55px;
+            display: none;
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+        }
+
+        #url-input-container input {
+            width: 300px;
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+        #url-input-container button {
+            padding: 5px 10px;
+        }
+        
+
+    </style>
+</head>
+<body>
+
+    <div id="overview"></div>
+
+    <div id="url-input-container">
+        <input type="text" id="url-input" placeholder="Paste your Geomark URL here">
+        <button id="submit-url">Submit</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.2.0/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4leaflet/1.0.2/proj4leaflet.min.js"></script>
+    <script src="https://unpkg.com/leaflet-wfst@2.0.1-beta.27/dist/leaflet-wfst.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/togeojson/0.16.0/togeojson.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://apps.gov.bc.ca/pub/geomark/js/geomark.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/terraformer/1.0.9/terraformer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/terraformer-wkt-parser/1.0.3/terraformer-wkt-parser.min.js"></script>
+
+    
+    <i data-feather="globe"></i>
+
+    <script>
+    // Initialize the map
+    var map = L.map('overview').setView([55.6, -128.9], 8);
+
+    // Base layer setup
+    var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+        subdomains: 'abcd',
+        maxZoom: 20
+    }).addTo(map);
+
+    const urlInputContainer = document.getElementById('url-input-container');
+    const urlInput = document.getElementById('url-input');
+    const submitUrlButton = document.getElementById('submit-url');
+
+    const globe_icon = feather.icons.globe.toSvg({ class: 'feather-icon' });
+
+    L.easyButton(globe_icon, function(btn, map){
+        if (urlInputContainer.style.display === 'none') {
+            urlInputContainer.style.display = 'block'; 
+        } else {
+            urlInputContainer.style.display = 'none'; 
+        }
+    }).addTo(map);
+
+    function getGeomarkFeature(geomarkId) {
+        var baseUrl = 'https://apps.gov.bc.ca/pub/geomark';
+        var client = new GeomarkClient(baseUrl); 
+        client.getGeomarkFeature({
+            'geomarkId': geomarkId,
+            'srid': 4326,
+            'callback': function(geomarkFeature) {
+                // Log the geometry to check if it's valid
+                console.log('Geomark geometry:', geomarkFeature.geometry);
+    
+                if (geomarkFeature.geometry) {
+                        var geometry = geomarkFeature.geometry.replace('SRID=4326;', ''); // Remove SRID prefix
+                        var geoJson = Terraformer.WKT.parse(geometry); // Parse WKT to GeoJSON
+                        console.log('geojson:   ', geoJson )
+                        if (geoJson) {
+                            var geojsonLayer = L.geoJSON(geoJson).addTo(map);
+                            map.fitBounds(geojsonLayer.getBounds()); // Adjust map view to the feature
+                        } else {
+                            console.error('Failed to parse geometry');
+                        
+                    } catch (error) {
+                        console.error('Error parsing WKT:', error);
+                    }
+                } else {
+                    alert('No valid geometry found for the given Geomark ID');
+                }
+            }
+        });
+    }
+    
+    // Passive event listener
+    submitUrlButton.addEventListener('click', function() {
+        const url = urlInput.value.trim();
+        if (url) {
+            // Extract the Geomark ID from the URL
+            const geomarkIdMatch = url.match(/gm-[a-zA-Z0-9]+/);
+            if (geomarkIdMatch) {
+                const geomarkId = geomarkIdMatch[0];
+                getGeomarkFeature(geomarkId);
+                urlInput.value = ''; // Clear the input
+                urlInputContainer.style.display = 'none'; // Hide the container
+            } else {
+                alert('Invalid Geomark URL. Please check the format.');
+            }
+        } else {
+            alert('Please enter a valid URL.');
+        }
+    }, { passive: true });
+
+    </script>
+</body>
+</html>
