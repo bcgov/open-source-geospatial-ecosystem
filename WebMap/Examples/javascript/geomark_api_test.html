@@ -15,7 +15,17 @@
         .feather-icon {
             width: 25px;
             height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
+        .leaflet-bar .feather-icon {
+            margin: auto;
+            width: 25px;
+            height: 25px;
+        }
+        
 
         #url-input-container {
             position: absolute;
@@ -36,7 +46,7 @@
         }
 
         #url-input-container button {
-            padding: 5px 10px;
+            padding: 5px 5px;
         }
         
 
@@ -81,7 +91,11 @@
     const urlInput = document.getElementById('url-input');
     const submitUrlButton = document.getElementById('submit-url');
 
-    const globe_icon = feather.icons.globe.toSvg({ class: 'feather-icon' });
+    const globe_icon = feather.icons.globe.toSvg({
+        class: 'feather-icon',
+        width: 25,
+        height: 25
+    });
 
     L.easyButton(globe_icon, function(btn, map){
         if (urlInputContainer.style.display === 'none') {
@@ -94,6 +108,16 @@
     function getGeomarkFeature(geomarkId) {
         var baseUrl = 'https://apps.gov.bc.ca/pub/geomark';
         var client = new GeomarkClient(baseUrl);
+
+        client.getGeomarkInfo({
+            'geomarkId': geomarkId,
+            'callback': function(geomarkInfo) {
+            console.log('Geomark Type: ' + geomarkInfo.geometryType);
+            console.log('Number of Features: ' + geomarkInfo.numParts);
+            console.log('Resource Links: ' + geomarkInfo.resourceLinks);
+            }
+        })
+
         client.getGeomarkFeature({
             'geomarkId': geomarkId,
             'srid': 4326,
@@ -105,10 +129,9 @@
                         var wktString = geomarkFeature.geometry.replace(/^SRID=\d+;/, '');
                         console.log('Cleaned WKT String:', wktString);
     
-                        // Alternative: Parse WKT with Terraformer
                         var wicket = new Wkt.Wkt();
-                        wicket.read(wktString); // Read the WKT
-                        var geojsonFeature = wicket.toJson(); // Convert to GeoJSON
+                        wicket.read(wktString); //
+                        var geojsonFeature = wicket.toJson(); 
                         L.geoJSON(geojsonFeature).addTo(map);
                         map.fitBounds(L.geoJSON(geojsonFeature).getBounds());
                     } catch (e) {
@@ -121,17 +144,15 @@
         });
     }
 
-    // Passive event listener
     submitUrlButton.addEventListener('click', function() {
         const url = urlInput.value.trim();
         if (url) {
-            // Extract the Geomark ID from the URL
             const geomarkIdMatch = url.match(/gm-[a-zA-Z0-9]+/);
             if (geomarkIdMatch) {
                 const geomarkId = geomarkIdMatch[0];
                 getGeomarkFeature(geomarkId);
-                urlInput.value = ''; // Clear the input
-                urlInputContainer.style.display = 'none'; // Hide the container
+                urlInput.value = '';
+                urlInputContainer.style.display = 'none';
             } else {
                 alert('Invalid Geomark URL. Please check the format.');
             }

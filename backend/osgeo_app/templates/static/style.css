@@ -655,3 +655,39 @@ h3.header-style {
     margin-bottom: 15px;
 }
 
+.feather-icon {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.leaflet-bar .feather-icon {
+    margin: auto;
+    width: 25px;
+    height: 25px;
+}
+
+
+#url-input-container {
+    position: absolute;
+    top: 85px;
+    left: 55px;
+    display: none;
+    background-color: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+#url-input-container input {
+    width: 300px;
+    padding: 5px;
+    margin-right: 5px;
+}
+
+#url-input-container button {
+    padding: 5px 5px;
+}
