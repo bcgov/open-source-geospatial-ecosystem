@@ -103,6 +103,7 @@
                 console.log('Geomark geometry:', geomarkFeature.geometry);
     
                 if (geomarkFeature.geometry) {
+                    try {
                         var geometry = geomarkFeature.geometry.replace('SRID=4326;', ''); // Remove SRID prefix
                         var geoJson = Terraformer.WKT.parse(geometry); // Parse WKT to GeoJSON
                         console.log('geojson:   ', geoJson )
@@ -111,7 +112,7 @@
                             map.fitBounds(geojsonLayer.getBounds()); // Adjust map view to the feature
                         } else {
                             console.error('Failed to parse geometry');
-                        
+                        }
                     } catch (error) {
                         console.error('Error parsing WKT:', error);
                     }
