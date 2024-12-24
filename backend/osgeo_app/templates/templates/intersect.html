@@ -48,7 +48,14 @@
     <h2>Upload a File to Intersect with Legal and Non Legal Planning Objectives</h2>
     <!-- Form for uploading data -->
     <form action="/intersect" method="POST" enctype="multipart/form-data" class="form-horizontal">
-        <input type="file" name="file" accept=".geojson,.shp,.kml,.gpx" required>
+        <div>
+            <label for="file-upload">Upload a file:</label>
+            <input type="file" id="file-upload" name="file" accept=".geojson,.shp,.kml,.gpx">
+        </div>
+        <div>
+            <label for="url-input">Or a geomark URL:</label>
+            <input type="url" id="url-input" name="url" placeholder="Enter URL">
+        </div>
         <div class="radio-group">
             <label>
                 <input type="radio" name="data_type" value="legal" required> Legal
