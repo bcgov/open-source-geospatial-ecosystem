@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, request, jsonify, Response
 from osgeo_app.cache import cache
 import requests
 from shapely.geometry import shape, Point, LineString
+from shapely.wkt import loads
 import geojson
 import geopandas as gpd
 import pandas as pd
@@ -197,6 +198,38 @@ def read_gpx(data):
 
     return uploaded_gdf
 
+def read_geomark(data):
+    url= data.split('/')
+    results=[i for i in url if 'gm' in i]
+    geomark_id = results[0]
+    format = 'json'  # Desired format: 'json', 'kml', 'gml', 'wkt'
+    srid = 4326  # Spatial Reference System Identifier
+
+    url = f'https://apps.gov.bc.ca/pub/geomark/geomarks/{geomark_id}/feature.{format}?srid={srid}'
+
+    response = requests.get(url)
+
+    if response.status_code == 200:
+        geometry_data = response.json()  # or response.text for 'wkt' format
+        print(geometry_data)
+    else:
+        print(f'Error fetching data: {response.status_code}')
+        
+    
+    if next(iter(geometry_data)) == 'items':
+        geo=(geometry_data['items'][0]['geometry'])
+    else: 
+        geo=(geometry_data['geometry'])
+    
+    srid, wkt = geo.split(";")
+    srid = int(srid.split("=")[1])
+    geometry = loads(wkt)
+    
+    gdf = gpd.GeoDataFrame({"geometry": [geometry]}, crs=f"EPSG:{srid}")
+    
+    return gdf
+
+
 legal_polys_gdf = None
 legal_lines_gdf = None
 legal_points_gdf = None
@@ -212,21 +245,32 @@ def intersect():
     uploaded_gdf = None
     with open(map_path, 'r') as f:
         leaflet_map = f.read()
+        
     if request.method == 'POST':
-        # Step 1: Read the uploaded file
-        uploaded_file = request.files['file']
+        # Step 1: Read the uploaded file or URL
+        uploaded_file = request.files.get('file')
+        url = request.form.get('url')  # Get the URL from the form
+
+        if uploaded_file and uploaded_file.filename:
+            # Handle file upload
+            if uploaded_file.filename.endswith('.geojson'):
+                uploaded_gdf = gpd.read_file(uploaded_file)
+            elif uploaded_file.filename.endswith('.shp'):
+                uploaded_gdf = gpd.read_file(uploaded_file)
+            elif uploaded_file.filename.endswith('.kml'):
+                uploaded_gdf = gpd.read_file(uploaded_file)
+            elif uploaded_file.filename.endswith('.gpx'):
+                uploaded_gdf = read_gpx(uploaded_file)
+        elif url:
+            # Handle URL submission
+            if 'geomark' in url:
+                uploaded_gdf = read_geomark(url)
+            else:
+                # Handle other URL-based data if applicable
+                raise ValueError("Unsupported URL format.")
+
         data_type = request.form['data_type']
-        # uploaded_gdf = None
-
-        if uploaded_file.filename.endswith('.geojson'):
-            uploaded_gdf = gpd.read_file(uploaded_file)
-        elif uploaded_file.filename.endswith('.shp'):
-            uploaded_gdf = gpd.read_file(uploaded_file)
-        elif uploaded_file.filename.endswith('.kml'):
-            uploaded_gdf = gpd.read_file(uploaded_file)
-        elif uploaded_file.filename.endswith('.gpx'):
-            uploaded_gdf = read_gpx(uploaded_file)
-
+        
         if uploaded_gdf is not None:
             
             intersected_data_1 = None
