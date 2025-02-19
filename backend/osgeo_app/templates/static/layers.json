@@ -381,6 +381,46 @@
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID', 'STRGC_LAND_RSRCE_PLAN_PROVID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','GEOMETRY','OBJECTID']",
                 "popup":"['STRGC_LAND_RSRCE_PLAN_ID', 'STRGC_LAND_RSRCE_PLAN_PROVID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS']",
                 "color":"#5e8f09"
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name" :"Gitanyow Lake Reserve",
+                "group":"Boundaries",
+                "query": "NON_LEGAL_FEAT_ATRB_1_NAME = 'Gitanyow Lake Reserve'",
+                "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
+                "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
+                "color":"#03fcf0"
+            },
+            {
+                "dataset": "WHSE_TERRESTRIAL_ECOLOGY.BIOT_OCCR_NON_SENS_AREA_SVW",
+                "type": "polygon",
+                "name" :"Species and Ecosystems at Risk: Publicly Available Occurrences",
+                "group":"Landscape",
+                "query": "",
+                "fields": "['OCCR_AREA_SP_ID', 'SCI_NAME', 'ENG_NAME', 'EL_TYPE', 'EL_TYPE_CD', 'TAX_CLASS', 'GLOB_RANK', 'GLOB_RANK','COSEWIC', 'BC_LIST', 'FIRST_OBS', 'LAST_OBS', 'RANK_DESC', 'RANK_DATE', 'RANK_COM','GEOMETRY','OBJECTID']",
+                "popup": "['OCCR_AREA_SP_ID', 'SCI_NAME', 'ENG_NAME', 'EL_TYPE', 'EL_TYPE_CD', 'TAX_CLASS', 'GLOB_RANK', 'GLOB_RANK','COSEWIC', 'BC_LIST', 'FIRST_OBS', 'LAST_OBS', 'RANK_DESC', 'RANK_DATE', 'RANK_COM']",
+                "color":"#bcc41b"
+            },
+            {
+                "dataset": "WHSE_TANTALIS.TA_CROWN_TENURES_SVW",
+                "type": "polygon",
+                "name" :"Proposed Treaty Settlement Land Offer",
+                "group":"Boundaries",
+                "query": "CROWN_LANDS_FILE IN ('6407380', '6407332', '6407381', '6407379', '6407384', '6407383', '6407382')",
+                "fields": "['INTRID_SID','TENURE_STAGE','TENURE_STATUS','TENURE_TYPE','TENURE_SUBTYPE','TENURE_PURPOSE','CROWN_LANDS_FILE','TENURE_EXPIRY','TENURE_LEGAL_DESCRIPTION','TENURE_AREA_IN_HECTARES','SHAPE','OBJECTID']",
+                "popup":"['INTRID_SID','TENURE_STAGE','TENURE_STATUS','TENURE_TYPE','TENURE_SUBTYPE','TENURE_PURPOSE','CROWN_LANDS_FILE','TENURE_EXPIRY','TENURE_LEGAL_DESCRIPTION','TENURE_AREA_IN_HECTARES']",
+                "color":"#e06793"
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name" :"Gitanyow Upper Kispiox SMZ",
+                "group":"Boundaries",
+                "query": "NON_LEGAL_FEAT_ATRB_1_VALUE IN ('Upper_Kispiox_SMZ', 'Upper Kispiox')",
+                "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
+                "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
+                "color":"#b6c76d"
             }
         ],
 
