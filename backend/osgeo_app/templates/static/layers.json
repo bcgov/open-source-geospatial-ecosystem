@@ -421,7 +421,18 @@
                 "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
                 "color":"#b6c76d"
-            }
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name": "Mill Creek Sensitive Area",
+                "group":"Boundaries",
+                "query": "",
+                "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
+                "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
+                "color":"#126283"
+            },
+
         ],
 
         "intersect":[
