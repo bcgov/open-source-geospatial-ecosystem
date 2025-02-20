@@ -427,11 +427,11 @@
                 "type": "polygon",
                 "name": "Mill Creek Sensitive Area",
                 "group":"Boundaries",
-                "query": "",
+                "query": "LEGAL_FEAT_OBJECTIVE = 'Mill Creek Sensitive Area'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
                 "color":"#126283"
-            },
+            }
 
         ],
 
