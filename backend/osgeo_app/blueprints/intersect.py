@@ -9,6 +9,9 @@ import pandas as pd
 import gpxpy
 import os
 import json
+import zipfile
+import tempfile
+
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -229,6 +232,21 @@ def read_geomark(data):
     
     return gdf
 
+def handle_zipped_shapefile(zip_file):
+    """Extracts and reads a shapefile from a zipped upload."""
+    with tempfile.TemporaryDirectory() as tmpdirname:
+        zip_path = os.path.join(tmpdirname, "uploaded.zip")
+        zip_file.save(zip_path) 
+
+        with zipfile.ZipFile(zip_path, 'r') as z:
+            z.extractall(tmpdirname)
+
+        for root, dirs, files in os.walk(tmpdirname):
+            for file in files:
+                if file.endswith(".shp"):
+                    shp_path = os.path.join(root, file)
+                    return gpd.read_file(shp_path)  
+    return None 
 
 legal_polys_gdf = None
 legal_lines_gdf = None
@@ -255,8 +273,8 @@ def intersect():
             # Handle file upload
             if uploaded_file.filename.endswith('.geojson'):
                 uploaded_gdf = gpd.read_file(uploaded_file)
-            elif uploaded_file.filename.endswith('.shp'):
-                uploaded_gdf = gpd.read_file(uploaded_file)
+            elif uploaded_file.filename.endswith('.zip'):
+                uploaded_gdf = handle_zipped_shapefile(uploaded_file)
             elif uploaded_file.filename.endswith('.kml'):
                 uploaded_gdf = gpd.read_file(uploaded_file)
             elif uploaded_file.filename.endswith('.gpx'):
