@@ -135,7 +135,7 @@
             {
                 "dataset": "WHSE_WATER_MANAGEMENT.WLS_COMMUNITY_WS_PUB_SVW",
                 "type": "polygon",
-                "name" :"Community Watersheds",
+                "name" :"Ten Link Creek Community Watershed",
                 "group":"Water",
                 "query": "WLS_CW_SYSID = 33",
                 "fields": "['CW_NAME','WATER_SYSTEM_NAME','CW_USE','CW_CODE','CW_DATE_CREATED','ORGANIZATION','POD_NUMBER','CW_LEGISLATION','SHAPE','OBJECTID']",
@@ -413,13 +413,13 @@
                 "color":"#e06793"
             },
             {
-                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
                 "type": "polygon",
-                "name" :"Gitanyow Upper Kispiox SMZ",
+                "name" :"Upper Kispiox SMZ",
                 "group":"Boundaries",
-                "query": "NON_LEGAL_FEAT_ATRB_1_VALUE IN ('Upper_Kispiox_SMZ', 'Upper Kispiox')",
-                "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
-                "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
+                "query": "LEGAL_FEAT_ATRB_1_VALUE = 'Upper Kispiox' And LEGAL_FEAT_OBJECTIVE = 'Resource Management Zones'",
+                "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
+                "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
                 "color":"#b6c76d"
             },
             {
@@ -431,6 +431,16 @@
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
                 "color":"#126283"
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name": "Pine Mushroom Habitat (Botanical Foresty Products)",
+                "group":"Landscape",
+                "query": "LEGAL_FEAT_OBJECTIVE = 'Botanical Forest Products'",
+                "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
+                "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
+                "color":"#7d3626"
             }
 
         ],
