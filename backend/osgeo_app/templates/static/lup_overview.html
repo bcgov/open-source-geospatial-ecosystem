@@ -185,6 +185,22 @@
 
             // Create headers and checkboxes for each group
             for (const [group, layers] of Object.entries(groupedLayers)) {
+                // Sort layers by 'order' if it exists, otherwise alphabetically by 'name'
+                layers.sort((a, b) => {
+                    const aOrder = a.order !== "" ? parseInt(a.order) : null;
+                    const bOrder = b.order !== "" ? parseInt(b.order) : null;
+
+                    if (aOrder !== null && bOrder !== null) {
+                        return aOrder - bOrder;
+                    } else if (aOrder !== null) {
+                        return -1;
+                    } else if (bOrder !== null) {
+                        return 1;
+                    } else {
+                        return a.name.localeCompare(b.name);
+                    }
+                });
+
                 // Create a group header
                 const groupHeader = document.createElement('p');
                 groupHeader.style.fontSize = "larger";
@@ -194,7 +210,6 @@
 
                 // Add checkboxes for each layer
                 layers.forEach((layer) => {
-                    // Find the correct index of this layer in the original jsonData array
                     const index = jsonData.findIndex(item => item.name === layer.name && item.group === group);
 
                     const label = document.createElement('label');
