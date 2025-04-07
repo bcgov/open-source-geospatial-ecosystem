@@ -65,10 +65,10 @@
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
                 "type": "polygon",
                 "name" :"Equivalent Clearcut Area Threshold Watersheds (Legal Planning Objective)",
-                "group":"Landscape",
+                "group":"Water",
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Equivalent Clearcut Area Threshold Watersheds'",
-                "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
-                "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
+                "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE','LEGAL_FEAT_ATRB_1_NAME','LEGAL_FEAT_ATRB_1_VALUE','LEGAL_FEAT_ATRB_2_VALUE','LEGAL_FEAT_ATRB_4_NAME','LEGAL_FEAT_ATRB_4_VALUE', 'LEGAL_FEAT_ATRB_5_VALUE','LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
+                "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE','LEGAL_FEAT_ATRB_1_NAME','LEGAL_FEAT_ATRB_1_VALUE','LEGAL_FEAT_ATRB_2_VALUE','LEGAL_FEAT_ATRB_4_NAME','LEGAL_FEAT_ATRB_4_VALUE','LEGAL_FEAT_ATRB_5_VALUE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
                 "color":"#A1FF33"
             },
             {
@@ -135,7 +135,7 @@
             {
                 "dataset": "WHSE_WATER_MANAGEMENT.WLS_COMMUNITY_WS_PUB_SVW",
                 "type": "polygon",
-                "name" :"Community Watersheds",
+                "name" :"Ten Link Creek Community Watershed (Non Legal Planning Objective)",
                 "group":"Water",
                 "query": "WLS_CW_SYSID = 33",
                 "fields": "['CW_NAME','WATER_SYSTEM_NAME','CW_USE','CW_CODE','CW_DATE_CREATED','ORGANIZATION','POD_NUMBER','CW_LEGISLATION','SHAPE','OBJECTID']",
@@ -215,6 +215,16 @@
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
                 "type": "polygon",
+                "name" :"Nass South SRMP",
+                "group":"Boundaries",
+                "query": "STRGC_LAND_RSRCE_PLAN_ID=150",
+                "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
+                "popup":"['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE']",
+                "color":"#946dc5"
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
+                "type": "polygon",
                 "name" :"Kispiox SRMP",
                 "group":"Boundaries",
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=127",
@@ -225,7 +235,7 @@
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
                 "type": "polygon",
-                "name" :"Kalum SRMP",
+                "name" :"Kalum Sustainable Resource Management Plan (SRMP)",
                 "group":"Boundaries",
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=149",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
@@ -235,7 +245,7 @@
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
                 "type": "polygon",
-                "name" :"Kalum LRMP",
+                "name" :"Kalum Land & Resource Management Plan (LRMP) ",
                 "group":"Boundaries",
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=20",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
@@ -295,8 +305,8 @@
             {
                 "dataset": "WHSE_MINERAL_TENURE.MTA_SITE_SP",
                 "type": "polygon",
-                "name" :"Mineral Reserve Sites: Gitanyow Treaty Settlement Lands ",
-                "group":"Mining",
+                "name" :"Government Proposed Treaty Settlement Lands Offer 2002 for Gitanyow (Mining Reserve Sites)",
+                "group":"Boundaries",
                 "query": "FILE_ID = '14280031081'",
                 "fields": "['SITE_NUMBER_ID', 'SITE_NAME', 'MTA_SITE_ORDER_RESTR_CODE', 'MTA_SITE_ORDER_RESTR_DESC', 'MTA_SITE_REASON_CODE', 'MTA_SITE_REASON_DESCRIPTION', 'RESERVE_TYPE', 'TOTAL_AREA', 'PROJECT_NAME', 'EFFECTIVE_DATE', 'DEPOSITED_DATE', 'BC_REGULATION_NUMBER', 'FILE_ID', 'SUNSET_DATE', 'REVISION_NUMBER', 'UPDATE_TIMESTAMP', 'ENTRY_TIMESTAMP','GEOMETRY','OBJECTID']",
                 "popup":"['SITE_NUMBER_ID', 'SITE_NAME', 'MTA_SITE_ORDER_RESTR_CODE', 'MTA_SITE_ORDER_RESTR_DESC', 'MTA_SITE_REASON_CODE', 'MTA_SITE_REASON_DESCRIPTION', 'RESERVE_TYPE', 'TOTAL_AREA', 'PROJECT_NAME', 'EFFECTIVE_DATE', 'DEPOSITED_DATE', 'BC_REGULATION_NUMBER', 'FILE_ID', 'SUNSET_DATE', 'REVISION_NUMBER', 'UPDATE_TIMESTAMP', 'ENTRY_TIMESTAMP']",
@@ -355,7 +365,7 @@
             {
                 "dataset": "WHSE_TANTALIS.TA_CROWN_TENURES_SVW",
                 "type": "polygon",
-                "name" :"RESERVE/NOTATION: Crown Tenures",
+                "name" :"Crown Land Reserves and Notations",
                 "group":"Boundaries",
                 "query": "TENURE_TYPE = 'RESERVE/NOTATION'",
                 "fields": "['INTRID_SID','TENURE_STAGE','TENURE_STATUS','TENURE_TYPE','TENURE_SUBTYPE','TENURE_PURPOSE','CROWN_LANDS_FILE','TENURE_EXPIRY','TENURE_LEGAL_DESCRIPTION','TENURE_AREA_IN_HECTARES','SHAPE','OBJECTID']",
@@ -375,7 +385,7 @@
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
                 "type": "polygon",
-                "name" :"Strategic Land and Resource Plans - Current",
+                "name" :"All current Strategic Land and Resource Plans (SLRPs) incl. LRMPs & SRMPs ",
                 "group":"Boundaries",
                 "query": "",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID', 'STRGC_LAND_RSRCE_PLAN_PROVID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','GEOMETRY','OBJECTID']",
@@ -385,8 +395,8 @@
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
                 "type": "polygon",
-                "name" :"Gitanyow Lake Reserve",
-                "group":"Boundaries",
+                "name" :"Gitanyow Lake Reserve (Non Legal Planning Objective) - Objective 6 (PDF p. 74)",
+                "group":"Cultural Heritage Resources",
                 "query": "NON_LEGAL_FEAT_ATRB_1_NAME = 'Gitanyow Lake Reserve'",
                 "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
@@ -405,7 +415,7 @@
             {
                 "dataset": "WHSE_TANTALIS.TA_CROWN_TENURES_SVW",
                 "type": "polygon",
-                "name" :"Proposed Treaty Settlement Land Offer",
+                "name" :"Government Proposed Treaty Settlement Lands Offer 2002 for Gitanyow (Crown Land Reserves)",
                 "group":"Boundaries",
                 "query": "CROWN_LANDS_FILE IN ('6407380', '6407332', '6407381', '6407379', '6407384', '6407383', '6407382')",
                 "fields": "['INTRID_SID','TENURE_STAGE','TENURE_STATUS','TENURE_TYPE','TENURE_SUBTYPE','TENURE_PURPOSE','CROWN_LANDS_FILE','TENURE_EXPIRY','TENURE_LEGAL_DESCRIPTION','TENURE_AREA_IN_HECTARES','SHAPE','OBJECTID']",
@@ -415,7 +425,7 @@
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
                 "type": "polygon",
-                "name" :"Gitanyow Upper Kispiox SMZ",
+                "name" :"Upper Kispiox Special management Zone (SMZ) (Non-Legal Planning Objective)  ",
                 "group":"Boundaries",
                 "query": "NON_LEGAL_FEAT_ATRB_1_VALUE IN ('Upper_Kispiox_SMZ', 'Upper Kispiox')",
                 "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
@@ -425,7 +435,17 @@
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
                 "type": "polygon",
-                "name": "Mill Creek Sensitive Area",
+                "name" :"Upper Kispiox Special management Zone (SMZ) (Legal Planning Objective)  ",
+                "group":"Boundaries",
+                "query": "LEGAL_FEAT_ATRB_1_VALUE IN ('Upper Kispiox')",
+                "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
+                "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
+                "color":"#c582b2"
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name": "Mill Creek Sensitive Area (Legal Planning Objective)",
                 "group":"Boundaries",
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Mill Creek Sensitive Area'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
