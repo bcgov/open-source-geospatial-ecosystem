@@ -9,7 +9,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Special Habitats for General Wildlife'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#FF5733"
+                "color":"#FF5733",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -19,7 +20,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Water Management Units'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#1ab5df"
+                "color":"#1ab5df",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -29,7 +31,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Goshawk Nesting/Post-Fledging Habitat' And STRGC_LAND_RSRCE_PLAN_NAME IN ('Cranberry Sustainable Resource Management Plan', 'Nass South Sustainable Resource Management Plan')",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#5733FF"
+                "color":"#5733FF",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -39,7 +42,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Cedar Stand Reserves'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#A133FF"
+                "color":"#A133FF",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -49,7 +53,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Grizzly Bear Identified Watersheds'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#3ae1ed"
+                "color":"#3ae1ed",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -59,7 +64,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Moose Winter Range'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#FFA133"
+                "color":"#FFA133",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -69,7 +75,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Equivalent Clearcut Area Threshold Watersheds'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE','LEGAL_FEAT_ATRB_1_NAME','LEGAL_FEAT_ATRB_1_VALUE','LEGAL_FEAT_ATRB_2_VALUE','LEGAL_FEAT_ATRB_4_NAME','LEGAL_FEAT_ATRB_4_VALUE', 'LEGAL_FEAT_ATRB_5_VALUE','LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE','LEGAL_FEAT_ATRB_1_NAME','LEGAL_FEAT_ATRB_1_VALUE','LEGAL_FEAT_ATRB_2_VALUE','LEGAL_FEAT_ATRB_4_NAME','LEGAL_FEAT_ATRB_4_VALUE','LEGAL_FEAT_ATRB_5_VALUE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#A1FF33"
+                "color":"#A1FF33",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -79,7 +86,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Ecosystem Network'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#FF33D4"
+                "color":"#FF33D4",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
@@ -89,7 +97,8 @@
                 "query": "NON_LEGAL_FEAT_OBJECTIVE = 'Goshawk Nesting/Post-Fledging Habitat' And STRGC_LAND_RSRCE_PLAN_NAME IN ('Cranberry Sustainable Resource Management Plan', 'Nass South Sustainable Resource Management Plan')",
                 "fields": "['NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
-                "color":"#FF33A1"
+                "color":"#FF33A1",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
@@ -99,7 +108,8 @@
                 "query": "NON_LEGAL_FEAT_OBJECTIVE = 'Moose Winter Range'",
                 "fields": "['NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
-                "color":"#33A1FF"
+                "color":"#33A1FF",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
@@ -109,7 +119,8 @@
                 "query": "NON_LEGAL_FEAT_OBJECTIVE = 'Ecosystem Network Buffer'",
                 "fields": "['NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
-                "color":"#33FFD4"
+                "color":"#33FFD4",
+                "order":""
             },
             {
                 "dataset": "WHSE_FOREST_TENURE.FTEN_REC_SITE_POINTS_SVW",
@@ -120,7 +131,7 @@
                 "fields": "['PROJECT_NAME','FOREST_FILE_ID','MAINTAIN_STD_DESC','SITE_LOCATION', 'PROJECT_ESTABLISHED_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['PROJECT_NAME','FOREST_FILE_ID','MAINTAIN_STD_DESC','SITE_LOCATION', 'PROJECT_ESTABLISHED_DATE']",
                 "color":"#c66fd6",
-                "icon_url":""
+                "order":""
             },    
             {
                 "dataset": "WHSE_FOREST_TENURE.FTEN_RECREATION_POLY_SVW",
@@ -130,7 +141,8 @@
                 "query": "",
                 "fields": "['PROJECT_NAME','FOREST_FILE_ID','SITE_LOCATION','PROJECT_TYPE', 'PROJECT_ESTABLISHED_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['PROJECT_NAME','FOREST_FILE_ID','SITE_LOCATION','PROJECT_TYPE', 'PROJECT_ESTABLISHED_DATE']",
-                "color":"#1f7c3e"
+                "color":"#1f7c3e",
+                "order":""
             },
             {
                 "dataset": "WHSE_WATER_MANAGEMENT.WLS_COMMUNITY_WS_PUB_SVW",
@@ -140,7 +152,8 @@
                 "query": "WLS_CW_SYSID = 33",
                 "fields": "['CW_NAME','WATER_SYSTEM_NAME','CW_USE','CW_CODE','CW_DATE_CREATED','ORGANIZATION','POD_NUMBER','CW_LEGISLATION','SHAPE','OBJECTID']",
                 "popup":"['CW_NAME','WATER_SYSTEM_NAME','CW_USE','CW_CODE','CW_DATE_CREATED','ORGANIZATION','POD_NUMBER','CW_LEGISLATION']",
-                "color":"#0ca9cf"
+                "color":"#0ca9cf",
+                "order":""
             },
             {
                 "dataset": "WHSE_WILDLIFE_MANAGEMENT.WCP_UNGULATE_WINTER_RANGE_SP",
@@ -150,7 +163,8 @@
                 "query": "(SPECIES_1 = 'M-ORAM' OR SPECIES_2 = 'M-ORAM')",
                 "fields": "['SPECIES_1', 'SPECIES_2','UWR_NUMBER','UWR_UNIT_NUMBER','GEOMETRY','OBJECTID']",
                 "popup":"['SPECIES_1', 'SPECIES_2','UWR_NUMBER','UWR_UNIT_NUMBER']",
-                "color":"#34bfde"
+                "color":"#34bfde",
+                "order":""
             },
             {
                 "dataset": "WHSE_WILDLIFE_MANAGEMENT.WCP_UNGULATE_WINTER_RANGE_SP",
@@ -160,7 +174,8 @@
                 "query": "(SPECIES_1 IN ('M-ALAL', 'M-ALAL;M-CEEL;M-ODHE;M-ODVI') OR SPECIES_2 IN ('M-ALAL', 'M-ODHE; M-ALAL'))",
                 "fields": "['SPECIES_1', 'SPECIES_2','UWR_NUMBER','UWR_UNIT_NUMBER','GEOMETRY','OBJECTID']",
                 "popup":"['SPECIES_1', 'SPECIES_2','UWR_NUMBER','UWR_UNIT_NUMBER']",
-                "color":"#9f6fe0"
+                "color":"#9f6fe0",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_OGMA_LEGAL_CURRENT_SVW",
@@ -170,7 +185,8 @@
                 "query": "",
                 "fields": "['LEGAL_OGMA_PROVID', 'OGMA_TYPE', 'OGMA_PRIMARY_REASON', 'LEGALIZATION_FRPA_DATE', 'LEGALIZATION_OGAA_DATE', 'ASSOCIATED_ACT_NAME','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_OGMA_PROVID', 'OGMA_TYPE', 'OGMA_PRIMARY_REASON', 'LEGALIZATION_FRPA_DATE', 'LEGALIZATION_OGAA_DATE', 'ASSOCIATED_ACT_NAME']",
-                "color":"#bb8e37"
+                "color":"#bb8e37",
+                "order":""
             },
             {
                 "dataset": "WHSE_LEGAL_ADMIN_BOUNDARIES.FNT_TREATY_AREA_SP",
@@ -202,7 +218,8 @@
                 "query": "",
                 "fields": "['TRACT_ID','TRACT_POLYGON_AREA','NUMBER_OF_MINFILE_OCCURENCES','METALLIC_MINERAL_INVENTORY','RANK_OF_INDUSTRIAL_MINERALS','GEOMETRY','OBJECTID']",
                 "popup":"['TRACT_ID','TRACT_POLYGON_AREA','NUMBER_OF_MINFILE_OCCURENCES','METALLIC_MINERAL_INVENTORY','RANK_OF_INDUSTRIAL_MINERALS']",
-                "color":"#2d3cd6"
+                "color":"#2d3cd6",
+                "order":""
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
@@ -289,7 +306,8 @@
                 "query": "REC_EVC_FINAL_VALUE_CODE IS NOT NULL",
                 "fields": "['PROJECT_NAME','REC_EVC_FINAL_VALUE_CODE', 'REC_EVQO_CODE','RATIONALE','GEOMETRY','OBJECTID']",
                 "popup":"['PROJECT_NAME','REC_EVC_FINAL_VALUE_CODE', 'REC_EVQO_CODE','RATIONALE']",
-                "color":"#c61277"
+                "color":"#c61277",
+                "order":""
             },
             {
                 "dataset": "WHSE_MINERAL_TENURE.MTA_ACQUIRED_TENURE_HISTORY_SP",
@@ -299,7 +317,8 @@
                 "query": "",
                 "fields": "['TENURE_HISTORY_ID', 'TENURE_NUMBER_ID','TENURE_TYPE_DESCRIPTION','REVISION_NUMBER','GEOMETRY','OBJECTID']",
                 "popup":"['TENURE_HISTORY_ID', 'TENURE_NUMBER_ID','TENURE_TYPE_DESCRIPTION','REVISION_NUMBER']",
-                "color":"#b6244d"
+                "color":"#b6244d",
+                "order":""
             },
             {
                 "dataset": "WHSE_MINERAL_TENURE.MTA_ACQUIRED_TENURE_SVW",
@@ -309,7 +328,8 @@
                 "query": "",
                 "fields": "['TENURE_NUMBER_ID', 'CLAIM_NAME','TENURE_TYPE_DESCRIPTION','TENURE_SUB_TYPE_DESCRIPTION','TITLE_TYPE_DESCRIPTION','ISSUE_DATE','GOOD_TO_DATE','AREA_IN_HECTARES','REVISION_NUMBER','GEOMETRY','OBJECTID']",
                 "popup":"['TENURE_NUMBER_ID', 'CLAIM_NAME','TENURE_TYPE_DESCRIPTION','TENURE_SUB_TYPE_DESCRIPTION','TITLE_TYPE_DESCRIPTION','ISSUE_DATE','GOOD_TO_DATE','AREA_IN_HECTARES','REVISION_NUMBER',]",
-                "color":"#fd5023"
+                "color":"#fd5023",
+                "order":""
             },
             {
                 "dataset": "WHSE_MINERAL_TENURE.MTA_SITE_SP",
@@ -330,7 +350,8 @@
                 "query": "SITE_NUMBER_ID IN (374924, 374925, 374926, 374927, 374928, 374929)",
                 "fields": "['SITE_HISTORY_ID', 'SITE_NUMBER_ID', 'SITE_STATUS_CODE', 'SITE_ORDER_RESTRICTION_CODE', 'SITE_ORDER_RESTRICTION_DESC', 'TERMINATION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['SITE_HISTORY_ID', 'SITE_NUMBER_ID', 'SITE_STATUS_CODE', 'SITE_ORDER_RESTRICTION_CODE', 'SITE_ORDER_RESTRICTION_DESC', 'TERMINATION_DATE']",
-                "color":"#c3cf81"
+                "color":"#c3cf81",
+                "order":""
             },
             {
                 "dataset": "WHSE_WILDLIFE_MANAGEMENT.WCP_WILDLIFE_HABITAT_AREA_POLY",
@@ -340,7 +361,8 @@
                 "query": "COMMON_SPECIES_NAME = 'Grizzly Bear'",
                 "fields": "['HABITAT_AREA_ID', 'TAG','APPROVAL_DATE','FEATURE_NOTES','COMMON_SPECIES_NAME','LEGISLATION_ACT_NAME','TIMBER_HARVEST_CODE','HECTARES','GEOMETRY','OBJECTID']",
                 "popup":"['HABITAT_AREA_ID', 'TAG','APPROVAL_DATE','FEATURE_NOTES','COMMON_SPECIES_NAME','LEGISLATION_ACT_NAME','TIMBER_HARVEST_CODE','HECTARES']",
-                "color":"#9e8679"
+                "color":"#9e8679",
+                "order":""
             },
             {
                 "dataset": "WHSE_TANTALIS.TA_PARK_ECORES_PA_SVW",
@@ -361,7 +383,8 @@
                 "query": "",
                 "fields": "['MAP_LABEL','ZONE','SUBZONE','VARIANT','PHASE','NATURAL_DISTURBANCE','GEOMETRY','OBJECTID']",
                 "popup":"['MAP_LABEL','ZONE','SUBZONE','VARIANT','PHASE','NATURAL_DISTURBANCE']",
-                "color":"#5b7058"
+                "color":"#5b7058",
+                "order":""
             },
             {
                 "dataset": "WHSE_TERRESTRIAL_ECOLOGY.ERC_ECOSECTIONS_SP",
@@ -371,7 +394,8 @@
                 "query": "",
                 "fields": "['ECOSECTION_CODE','ECOSECTION_NAME','EFFECTIVE_DATE','EXPIRY_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['ECOSECTION_CODE','ECOSECTION_NAME','EFFECTIVE_DATE','EXPIRY_DATE']",
-                "color":"#09df6c"
+                "color":"#09df6c",
+                "order":""
             },
             {
                 "dataset": "WHSE_TANTALIS.TA_CROWN_TENURES_SVW",
@@ -414,7 +438,8 @@
                 "query": "NON_LEGAL_FEAT_ATRB_1_NAME = 'Gitanyow Lake Reserve'",
                 "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
-                "color":"#03fcf0"
+                "color":"#03fcf0",
+                "order":""
             },
             {
                 "dataset": "WHSE_TERRESTRIAL_ECOLOGY.BIOT_OCCR_NON_SENS_AREA_SVW",
@@ -424,7 +449,8 @@
                 "query": "",
                 "fields": "['OCCR_AREA_SP_ID', 'SCI_NAME', 'ENG_NAME', 'EL_TYPE', 'EL_TYPE_CD', 'TAX_CLASS', 'GLOB_RANK', 'GLOB_RANK','COSEWIC', 'BC_LIST', 'FIRST_OBS', 'LAST_OBS', 'RANK_DESC', 'RANK_DATE', 'RANK_COM','GEOMETRY','OBJECTID']",
                 "popup": "['OCCR_AREA_SP_ID', 'SCI_NAME', 'ENG_NAME', 'EL_TYPE', 'EL_TYPE_CD', 'TAX_CLASS', 'GLOB_RANK', 'GLOB_RANK','COSEWIC', 'BC_LIST', 'FIRST_OBS', 'LAST_OBS', 'RANK_DESC', 'RANK_DATE', 'RANK_COM']",
-                "color":"#bcc41b"
+                "color":"#bcc41b",
+                "order":""
             },
             {
                 "dataset": "WHSE_TANTALIS.TA_CROWN_TENURES_SVW",
