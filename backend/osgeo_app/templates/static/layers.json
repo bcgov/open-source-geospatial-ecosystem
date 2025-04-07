@@ -180,7 +180,8 @@
                 "query": "TREATY = 'Nisga''a' and AREA_TYPE = 'Nass Wildlife Area'",
                 "fields": "['TREATY_AREA_ID','TREATY','EFFECTIVE_DATE','FIRST_NATION_NAME','AREA_TYPE','CHAPTER_REFERENCE','APPENDIX_REFERENCE','GEOMETRY','OBJECTID']",
                 "popup":"['TREATY_AREA_ID','TREATY','EFFECTIVE_DATE','FIRST_NATION_NAME','AREA_TYPE','CHAPTER_REFERENCE','APPENDIX_REFERENCE']",
-                "color":"#7ccc8d"
+                "color":"#7ccc8d",
+                "order":"12"
             },
             {
                 "dataset": "WHSE_LEGAL_ADMIN_BOUNDARIES.FNT_TREATY_AREA_SP",
@@ -190,7 +191,8 @@
                 "query": "TREATY = 'Nisga''a' and AREA_TYPE = 'Nass Area'",
                 "fields": "['TREATY_AREA_ID','TREATY','EFFECTIVE_DATE','FIRST_NATION_NAME','AREA_TYPE','CHAPTER_REFERENCE','APPENDIX_REFERENCE','GEOMETRY','OBJECTID']",
                 "popup":"['TREATY_AREA_ID','TREATY','EFFECTIVE_DATE','FIRST_NATION_NAME','AREA_TYPE','CHAPTER_REFERENCE','APPENDIX_REFERENCE']",
-                "color":"#3af49d"
+                "color":"#3af49d",
+                "order":"11"
             },
             {
                 "dataset": "WHSE_MINERAL_TENURE.MINPOT_MINERAL_POTENTIAL",
@@ -210,7 +212,8 @@
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=126",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE']",
-                "color":"#b3b300"
+                "color":"#b3b300",
+                "order":"8"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
@@ -220,7 +223,8 @@
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=150",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE']",
-                "color":"#946dc5"
+                "color":"#946dc5",
+                "order":"7"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
@@ -230,7 +234,8 @@
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=127",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE']",
-                "color":"#b35900"
+                "color":"#b35900",
+                "order":"9"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
@@ -240,7 +245,8 @@
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=149",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE']",
-                "color":"#8985ea"
+                "color":"#8985ea",
+                "order":"6"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
@@ -250,7 +256,8 @@
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=20",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE']",
-                "color":"#ee2965"
+                "color":"#ee2965",
+                "order":"5"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
@@ -260,7 +267,8 @@
                 "query": "STRGC_LAND_RSRCE_PLAN_ID=151",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['STRGC_LAND_RSRCE_PLAN_ID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','APPROVAL_DATE','APPROVAL_LAST_AMEND_DATE','LEGALIZATION_DATE','LEGALIZATION_LAST_AMEND_DATE']",
-                "color":"#fae093"
+                "color":"#fae093",
+                "order":"10"
             },
             {
                 "dataset": "WHSE_TANTALIS.TA_CONSERVANCY_AREAS_SVW",
@@ -270,7 +278,8 @@
                 "query": " ADMIN_AREA_SID = 5420",
                 "fields": "['ADMIN_AREA_SID','CONSERVANCY_AREA_NAME','ORCS_PRIMARY','ORCS_SECONDARY','ESTABLISHMENT_DATE','OFFICIAL_AREA_HA','PARK_MANAGEMENT_PLAN_URL','SHAPE','OBJECTID']",
                 "popup":"['ADMIN_AREA_SID','CONSERVANCY_AREA_NAME','ORCS_PRIMARY','ORCS_SECONDARY','ESTABLISHMENT_DATE','OFFICIAL_AREA_HA','PARK_MANAGEMENT_PLAN_URL']",
-                "color":"#8d9027"
+                "color":"#8d9027",
+                "order":"1"
             },
             {
                 "dataset": "WHSE_FOREST_VEGETATION.REC_VISUAL_LANDSCAPE_INVENTORY",
@@ -310,7 +319,8 @@
                 "query": "FILE_ID = '14280031081'",
                 "fields": "['SITE_NUMBER_ID', 'SITE_NAME', 'MTA_SITE_ORDER_RESTR_CODE', 'MTA_SITE_ORDER_RESTR_DESC', 'MTA_SITE_REASON_CODE', 'MTA_SITE_REASON_DESCRIPTION', 'RESERVE_TYPE', 'TOTAL_AREA', 'PROJECT_NAME', 'EFFECTIVE_DATE', 'DEPOSITED_DATE', 'BC_REGULATION_NUMBER', 'FILE_ID', 'SUNSET_DATE', 'REVISION_NUMBER', 'UPDATE_TIMESTAMP', 'ENTRY_TIMESTAMP','GEOMETRY','OBJECTID']",
                 "popup":"['SITE_NUMBER_ID', 'SITE_NAME', 'MTA_SITE_ORDER_RESTR_CODE', 'MTA_SITE_ORDER_RESTR_DESC', 'MTA_SITE_REASON_CODE', 'MTA_SITE_REASON_DESCRIPTION', 'RESERVE_TYPE', 'TOTAL_AREA', 'PROJECT_NAME', 'EFFECTIVE_DATE', 'DEPOSITED_DATE', 'BC_REGULATION_NUMBER', 'FILE_ID', 'SUNSET_DATE', 'REVISION_NUMBER', 'UPDATE_TIMESTAMP', 'ENTRY_TIMESTAMP']",
-                "color":"#d9b3ff"
+                "color":"#d9b3ff",
+                "order":"14"
             },
             {
                 "dataset": "WHSE_MINERAL_TENURE.MTA_SITE_HISTORY_SP",
@@ -340,7 +350,8 @@
                 "query": "",
                 "fields": "['ADMIN_AREA_SID','PROTECTED_LANDS_NAME','PROTECTED_LANDS_DESIGNATION','PARK_CLASS','OFFICIAL_AREA_HA','PARK_MANAGEMENT_PLAN_URL','SHAPE','OBJECTID']",
                 "popup":"['ADMIN_AREA_SID','PROTECTED_LANDS_NAME','PROTECTED_LANDS_DESIGNATION','PARK_CLASS','OFFICIAL_AREA_HA','PARK_MANAGEMENT_PLAN_URL']",
-                "color":"#509371"
+                "color":"#509371",
+                "order":"0"
             },
             {
                 "dataset": "WHSE_FOREST_VEGETATION.BEC_BIOGEOCLIMATIC_POLY",
@@ -370,7 +381,8 @@
                 "query": "TENURE_TYPE = 'RESERVE/NOTATION'",
                 "fields": "['INTRID_SID','TENURE_STAGE','TENURE_STATUS','TENURE_TYPE','TENURE_SUBTYPE','TENURE_PURPOSE','CROWN_LANDS_FILE','TENURE_EXPIRY','TENURE_LEGAL_DESCRIPTION','TENURE_AREA_IN_HECTARES','SHAPE','OBJECTID']",
                 "popup":"['INTRID_SID','TENURE_STAGE','TENURE_STATUS','TENURE_TYPE','TENURE_SUBTYPE','TENURE_PURPOSE','CROWN_LANDS_FILE','TENURE_EXPIRY','TENURE_LEGAL_DESCRIPTION','TENURE_AREA_IN_HECTARES']",
-                "color":"#7065bd"
+                "color":"#7065bd",
+                "order":"16"
             },
             {
                 "dataset": "WHSE_CADASTRE.PMBC_PARCEL_FABRIC_POLY_SVW",
@@ -380,7 +392,8 @@
                 "query": "OWNER_TYPE='Private'",
                 "fields": "['PARCEL_NAME', 'OWNER_TYPE','SHAPE','OBJECTID']",
                 "popup":"['PARCEL_NAME', 'OWNER_TYPE']",
-                "color":"#b8263e"
+                "color":"#b8263e",
+                "order":"17"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_STRGC_LAND_RSRCE_PLAN_SVW",
@@ -390,7 +403,8 @@
                 "query": "",
                 "fields": "['STRGC_LAND_RSRCE_PLAN_ID', 'STRGC_LAND_RSRCE_PLAN_PROVID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS','GEOMETRY','OBJECTID']",
                 "popup":"['STRGC_LAND_RSRCE_PLAN_ID', 'STRGC_LAND_RSRCE_PLAN_PROVID','STRGC_LAND_RSRCE_PLAN_NAME','PLAN_TYPE','PLAN_STATUS']",
-                "color":"#5e8f09"
+                "color":"#5e8f09",
+                "order":"4"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
@@ -420,7 +434,8 @@
                 "query": "CROWN_LANDS_FILE IN ('6407380', '6407332', '6407381', '6407379', '6407384', '6407383', '6407382')",
                 "fields": "['INTRID_SID','TENURE_STAGE','TENURE_STATUS','TENURE_TYPE','TENURE_SUBTYPE','TENURE_PURPOSE','CROWN_LANDS_FILE','TENURE_EXPIRY','TENURE_LEGAL_DESCRIPTION','TENURE_AREA_IN_HECTARES','SHAPE','OBJECTID']",
                 "popup":"['INTRID_SID','TENURE_STAGE','TENURE_STATUS','TENURE_TYPE','TENURE_SUBTYPE','TENURE_PURPOSE','CROWN_LANDS_FILE','TENURE_EXPIRY','TENURE_LEGAL_DESCRIPTION','TENURE_AREA_IN_HECTARES']",
-                "color":"#e06793"
+                "color":"#e06793",
+                "order":"13"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
@@ -430,7 +445,8 @@
                 "query": "NON_LEGAL_FEAT_ATRB_1_VALUE IN ('Upper_Kispiox_SMZ', 'Upper Kispiox')",
                 "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
-                "color":"#b6c76d"
+                "color":"#b6c76d",
+                "order":"3"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -440,7 +456,8 @@
                 "query": "LEGAL_FEAT_ATRB_1_VALUE IN ('Upper Kispiox')",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#c582b2"
+                "color":"#c582b2",
+                "order":"3"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -450,7 +467,8 @@
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Mill Creek Sensitive Area'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
-                "color":"#126283"
+                "color":"#126283",
+                "order":"2"
             }
 
         ],
