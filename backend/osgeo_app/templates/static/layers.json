@@ -38,12 +38,12 @@
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
                 "type": "polygon",
                 "name" :"Cedar Stand Reserves (Legal Planning Objective)",
-                "group":"Landscape",
+                "group":"Landscape/Ecosystems",
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Cedar Stand Reserves'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
                 "color":"#A133FF",
-                "order":""
+                "order":"1"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
@@ -82,12 +82,12 @@
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
                 "type": "polygon",
                 "name" :"Ecosystem Network (Legal Planning Objective)",
-                "group":"Landscape",
+                "group":"Landscape/Ecosystems",
                 "query": "LEGAL_FEAT_OBJECTIVE = 'Ecosystem Network'",
                 "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
                 "color":"#FF33D4",
-                "order":""
+                "order":"5"
             },
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
@@ -115,12 +115,12 @@
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
                 "type": "polygon",
                 "name" :"Ecosystem Network Buffer (Non Legal Planning Objective)",
-                "group":"Landscape",
+                "group":"Landscape/Ecosystems",
                 "query": "NON_LEGAL_FEAT_OBJECTIVE = 'Ecosystem Network Buffer'",
                 "fields": "['NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
                 "color":"#33FFD4",
-                "order":""
+                "order":"6"
             },
             {
                 "dataset": "WHSE_FOREST_TENURE.FTEN_REC_SITE_POINTS_SVW",
@@ -181,12 +181,12 @@
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_OGMA_LEGAL_CURRENT_SVW",
                 "type": "polygon",
                 "name" :"Old Growth Management Areas - Legal - Current",
-                "group":"Landscape",
+                "group":"Landscape/Ecosystems",
                 "query": "",
                 "fields": "['LEGAL_OGMA_PROVID', 'OGMA_TYPE', 'OGMA_PRIMARY_REASON', 'LEGALIZATION_FRPA_DATE', 'LEGALIZATION_OGAA_DATE', 'ASSOCIATED_ACT_NAME','GEOMETRY','OBJECTID']",
                 "popup":"['LEGAL_OGMA_PROVID', 'OGMA_TYPE', 'OGMA_PRIMARY_REASON', 'LEGALIZATION_FRPA_DATE', 'LEGALIZATION_OGAA_DATE', 'ASSOCIATED_ACT_NAME']",
                 "color":"#bb8e37",
-                "order":""
+                "order":"7"
             },
             {
                 "dataset": "WHSE_LEGAL_ADMIN_BOUNDARIES.FNT_TREATY_AREA_SP",
@@ -302,12 +302,12 @@
                 "dataset": "WHSE_FOREST_VEGETATION.REC_VISUAL_LANDSCAPE_INVENTORY",
                 "type": "polygon",
                 "name" :"Visual Landscape Inventory",
-                "group":"Landscape",
+                "group":"Landscape/Ecosystems",
                 "query": "REC_EVC_FINAL_VALUE_CODE IS NOT NULL",
                 "fields": "['PROJECT_NAME','REC_EVC_FINAL_VALUE_CODE', 'REC_EVQO_CODE','RATIONALE','GEOMETRY','OBJECTID']",
                 "popup":"['PROJECT_NAME','REC_EVC_FINAL_VALUE_CODE', 'REC_EVQO_CODE','RATIONALE']",
                 "color":"#c61277",
-                "order":""
+                "order":"9"
             },
             {
                 "dataset": "WHSE_MINERAL_TENURE.MTA_ACQUIRED_TENURE_HISTORY_SP",
@@ -379,23 +379,23 @@
                 "dataset": "WHSE_FOREST_VEGETATION.BEC_BIOGEOCLIMATIC_POLY",
                 "type": "polygon",
                 "name" :"Biogeoclimatic Ecosystem Classification (BEC)",
-                "group":"Landscape",
+                "group":"Landscape/Ecosystems",
                 "query": "",
                 "fields": "['MAP_LABEL','ZONE','SUBZONE','VARIANT','PHASE','NATURAL_DISTURBANCE','GEOMETRY','OBJECTID']",
                 "popup":"['MAP_LABEL','ZONE','SUBZONE','VARIANT','PHASE','NATURAL_DISTURBANCE']",
                 "color":"#5b7058",
-                "order":""
+                "order":"0"
             },
             {
                 "dataset": "WHSE_TERRESTRIAL_ECOLOGY.ERC_ECOSECTIONS_SP",
                 "type": "polygon",
                 "name" :"Ecosections - Ecoregion Ecosystem Classification of British Columbia",
-                "group":"Landscape",
+                "group":"Landscape/Ecosystems",
                 "query": "",
                 "fields": "['ECOSECTION_CODE','ECOSECTION_NAME','EFFECTIVE_DATE','EXPIRY_DATE','GEOMETRY','OBJECTID']",
                 "popup":"['ECOSECTION_CODE','ECOSECTION_NAME','EFFECTIVE_DATE','EXPIRY_DATE']",
                 "color":"#09df6c",
-                "order":""
+                "order":"4"
             },
             {
                 "dataset": "WHSE_TANTALIS.TA_CROWN_TENURES_SVW",
@@ -445,12 +445,12 @@
                 "dataset": "WHSE_TERRESTRIAL_ECOLOGY.BIOT_OCCR_NON_SENS_AREA_SVW",
                 "type": "polygon",
                 "name" :"Species and Ecosystems at Risk: Publicly Available Occurrences",
-                "group":"Landscape",
+                "group":"Landscape/Ecosystems",
                 "query": "",
                 "fields": "['OCCR_AREA_SP_ID', 'SCI_NAME', 'ENG_NAME', 'EL_TYPE', 'EL_TYPE_CD', 'TAX_CLASS', 'GLOB_RANK', 'GLOB_RANK','COSEWIC', 'BC_LIST', 'FIRST_OBS', 'LAST_OBS', 'RANK_DESC', 'RANK_DATE', 'RANK_COM','GEOMETRY','OBJECTID']",
                 "popup": "['OCCR_AREA_SP_ID', 'SCI_NAME', 'ENG_NAME', 'EL_TYPE', 'EL_TYPE_CD', 'TAX_CLASS', 'GLOB_RANK', 'GLOB_RANK','COSEWIC', 'BC_LIST', 'FIRST_OBS', 'LAST_OBS', 'RANK_DESC', 'RANK_DATE', 'RANK_COM']",
                 "color":"#bcc41b",
-                "order":""
+                "order":"8"
             },
             {
                 "dataset": "WHSE_TANTALIS.TA_CROWN_TENURES_SVW",
@@ -495,6 +495,28 @@
                 "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
                 "color":"#126283",
                 "order":"2"
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name": "Pine Mushroom Habitat (Botanical Forest Products) (Legal Planning Objective)",
+                "group":"Landscape/Ecosystems",
+                "query": "LEGAL_FEAT_OBJECTIVE = 'Botanical Forest Products'",
+                "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
+                "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
+                "color":"#ae5b48",
+                "order":"2"
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name": "Pine Mushroom Habitat (Botanical Forest Products) (Non Legal Planning Objective)",
+                "group":"Landscape/Ecosystems",
+                "query": "NON_LEGAL_FEAT_OBJECTIVE = 'Botanical Forest Products'",
+                "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
+                "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
+                "color":"#9f2121",
+                "order":"3"
             }
 
         ],
