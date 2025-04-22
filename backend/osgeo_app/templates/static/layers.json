@@ -517,6 +517,28 @@
                 "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
                 "color":"#9f2121",
                 "order":"3"
+            },
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name": "Grizzly Bear Identified Watersheds (Non Legal Planning Objective)",
+                "group":"Wildlife",
+                "query": "NON_LEGAL_FEAT_OBJECTIVE = 'Grizzly Bear Identified Watersheds'",
+                "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
+                "popup":"['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE']",
+                "color":"#a3cb7e",
+                "order":""
+            },
+            {
+                "dataset": "WHSE_WATER_MANAGEMENT.WLS_COMMUNITY_WS_PUB_SVW",
+                "type": "polygon",
+                "name": "Ten Link Creek Community Watershed (Government Designated)",
+                "group":"Water",
+                "query": "CW_NAME = 'Ten Link Community Watershed'",
+                "fields": "['CW_NAME','WLS_CW_SYSID','CW_CODE','CW_SOURCE_NAME','CW_SOURCE_TYPE','CW_LEGISLATION','CW_DATE_CREATED','CW_STATUS','WATER_SYSTEM_NAME','WATER_TREATMENT_TYPE','SHAPE','OBJECTID']",
+                "popup":"['CW_NAME','WLS_CW_SYSID','CW_CODE','CW_SOURCE_NAME','CW_SOURCE_TYPE','CW_LEGISLATION','CW_DATE_CREATED','CW_STATUS','WATER_SYSTEM_NAME','WATER_TREATMENT_TYPE']",
+                "color":"#7e90cb",
+                "order":""
             }
 
         ],
