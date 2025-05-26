@@ -130,7 +130,9 @@ def process_wfs_intersection(user_data, dataset, columns, bbox):
 def legal_data_intersect(user_data):
     legal_columns = [
         'LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE',
-        'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 
+        'LEGALIZATION_DATE','LEGAL_FEAT_ATRB_1_NAME','LEGAL_FEAT_ATRB_1_VALUE','LEGAL_FEAT_ATRB_2_NAME',
+        'LEGAL_FEAT_ATRB_2_VALUE','LEGAL_FEAT_ATRB_4_NAME','LEGAL_FEAT_ATRB_4_VALUE','LEGAL_FEAT_ATRB_5_NAME',
+        'LEGAL_FEAT_ATRB_5_VALUE','ENABLING_DOCUMENT_TITLE', 
         'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK'
     ]
     # Process intersections for polygons, lines, and points
