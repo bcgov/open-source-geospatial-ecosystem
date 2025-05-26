@@ -4,9 +4,11 @@
 ## Building and running the docker image locally
 To build the image:\
 `docker build -t flask-app .`
+`podman build -t flask-app .`
 
 Running the image:\
 `docker run -p 5000:5000 flask-app`
+`podman run -p 5000:5000 flask-app`
 
 # If Using Podman 
 ## Building and running the docker image locally
@@ -30,3 +32,5 @@ poetry install
 ```
 Adding new dependencies:\
 `poetry add <name>`
+
+
