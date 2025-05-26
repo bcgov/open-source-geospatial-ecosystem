@@ -5,15 +5,17 @@
 To build the image:\
 `docker build -t flask-app .`
 
+
 Running the image:\
 `docker run -p 5000:5000 flask-app`
+
 
 # If Using Podman 
 ## Building and running the docker image locally
 Change to app location 
 `cd open-source-geospatial-ecosystem/backend/`
 Build Image 
-'podman build -t flask-app . '
+`podman build -t flask-app . `
 Run the image
 `podman run -p 5000:5000 flask-app`
 
@@ -30,3 +32,5 @@ poetry install
 ```
 Adding new dependencies:\
 `poetry add <name>`
+
+

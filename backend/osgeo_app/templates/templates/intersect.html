@@ -96,6 +96,12 @@
                             <th>Plan Name</th>
                             <th>Objective</th>
                             <th>Legalization Date</th>
+                            <th>Legal Feature Attribute 1</th>
+                            <th>Legal Feature Attribute Value 1</th>
+                            <th>Legal Feature Attribute Value 2</th>
+                            <th>Legal Feature Attribute 4</th>
+                            <th>Legal Feature Attribute Value 4</th>
+                            <th>Legal Feature Attribute Value 5</th>
                             <th>Document Title</th>
                             <th>Document URL</th>
                             <th>Metadata Link</th>
@@ -108,6 +114,14 @@
                                 <td>{{ row['STRGC_LAND_RSRCE_PLAN_NAME'] }}</td>
                                 <td>{{ row['LEGAL_FEAT_OBJECTIVE'] }}</td>
                                 <td>{{ row['LEGALIZATION_DATE'] }}</td>
+                                <td>{{ row['LEGAL_FEAT_ATRB_1_NAME'] }}</td>
+                                <td>{{ row['LEGAL_FEAT_ATRB_1_VALUE'] }}</td>
+                                <td>{{ row['LEGAL_FEAT_ATRB_2_NAME'] }}</td>
+                                <td>{{ row['LEGAL_FEAT_ATRB_2_VALUE'] }}</td>
+                                <td>{{ row['LEGAL_FEAT_ATRB_4_NAME'] }}</td>
+                                <td>{{ row['LEGAL_FEAT_ATRB_4_VALUE'] }}</td>
+                                <td>{{ row['LEGAL_FEAT_ATRB_5_NAME'] }}</td>
+                                <td>{{ row['LEGAL_FEAT_ATRB_5_VALUE'] }}</td>
                                 <td>{{ row['ENABLING_DOCUMENT_TITLE'] }}</td>
                                 <td><a href="{{ row['ENABLING_DOCUMENT_URL'] }}" target="_blank">Link</a></td>
                                 <td><a href="{{ row['RSRCE_PLAN_METADATA_LINK'] }}" target="_blank">Link</a></td>

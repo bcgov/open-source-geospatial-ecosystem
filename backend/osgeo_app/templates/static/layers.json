@@ -433,7 +433,7 @@
             {
                 "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_NON_LEGAL_POLY_SVW",
                 "type": "polygon",
-                "name" :"Gitanyow Lake Reserve (Non Legal Planning Objective) - Objective 6 (PDF p. 74)",
+                "name" :"Gitanyow Lake Reserve (Non Legal Planning Objective)",
                 "group":"Cultural Heritage Resources",
                 "query": "NON_LEGAL_FEAT_ATRB_1_NAME = 'Gitanyow Lake Reserve'",
                 "fields": "['NON_LEGAL_FEAT_ATRB_1_NAME','NON_LEGAL_FEAT_ID', 'STRGC_LAND_RSRCE_PLAN_NAME','NON_LEGAL_FEAT_OBJECTIVE','ORIGINAL_DECISION_DATE','GEOMETRY','OBJECTID']",
@@ -539,6 +539,18 @@
                 "popup":"['CW_NAME','WLS_CW_SYSID','CW_CODE','CW_SOURCE_NAME','CW_SOURCE_TYPE','CW_LEGISLATION','CW_DATE_CREATED','CW_STATUS','WATER_SYSTEM_NAME','WATER_TREATMENT_TYPE']",
                 "color":"#7e90cb",
                 "order":""
+            }, 
+
+            {
+                "dataset": "WHSE_LAND_USE_PLANNING.RMP_PLAN_LEGAL_POLY_SVW",
+                "type": "polygon",
+                "name": "Gitanyow Lake Reserve (Legal Planning Objective)" ,
+                "group":"Cultural Heritage Resources",
+                "query": "LEGAL_FEAT_ID = 106918",
+                "fields": "['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK','GEOMETRY','OBJECTID']",
+                "popup":"['LEGAL_FEAT_ID','STRGC_LAND_RSRCE_PLAN_NAME', 'LEGAL_FEAT_OBJECTIVE', 'LEGALIZATION_DATE', 'ENABLING_DOCUMENT_TITLE', 'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK']",
+                "color":"#288ab4",
+                "order":"1"
             }
 
         ],

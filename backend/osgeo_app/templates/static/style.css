@@ -374,33 +374,49 @@ body {
 /* Table container with scroll bar */
 .table-container {
     max-height: 300px;
-    /* Set the max height of the table container */
     overflow-y: auto;
-    /* Add vertical scroll */
     overflow-x: auto;
     margin: 10px auto;
     border: 1px solid #ddd;
     border-radius: 5px;
     padding: 10px;
-}
-
-/* Ensure table inside the container does not exceed the container height */
-table {
     width: 100%;
-    /* Set to full width of the parent container */
-    border-collapse: collapse;
-    text-align: left;
-    max-height: 100%;
-    /* Ensure the table does not overflow */
-    overflow-y: auto;
-    /* Add vertical scroll to table if needed */
 }
 
-/* Table rows and cells for better visibility */
-table th,
-table td {
-    padding: 10px;
+/* Table styling */
+.table-container table {
+    min-width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+
+.table-container th,
+.table-container td {
+    text-align: left;
     border: 1px solid #ddd;
+    padding: 8px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 100px; /* Ensure minimum column width */
+}
+
+.table-container th {
+    background-color: #f2f2f2;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+/* Hover effect for better readability */
+.table-container tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* Remove fixed widths for columns to allow more flexible sizing */
+.table-container th,
+.table-container td {
+    width: auto;
 }
 
 /* Minimize button styling */
@@ -435,57 +451,8 @@ table td {
     background-color: #45a049;
 }
 
-.table-container table {
-    table-layout: fixed;
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.table-container th,
-.table-container td {
-    text-align: left;
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
-.table-container th {
-    background-color: #f2f2f2;
-}
-
-/* Define specific widths for columns */
-.table-container th:nth-child(1),
-.table-container td:nth-child(1) {
-    width: 15%;
-    /* Adjust as needed */
-}
-
-.table-container th:nth-child(2),
-.table-container td:nth-child(2) {
-    width: 20%;
-}
-
-.table-container th:nth-child(3),
-.table-container td:nth-child(3) {
-    width: 30%;
-}
-
-.table-container th:nth-child(4),
-.table-container td:nth-child(4) {
-    width: 15%;
-}
-
-.table-container th:nth-child(5),
-.table-container td:nth-child(5),
-.table-container th:nth-child(6),
-.table-container td:nth-child(6),
-.table-container th:nth-child(7),
-.table-container td:nth-child(7) {
-    width: 10%;
-    /* Applies to columns unique to the first table */
-}
-
-/*lup overview map*/
-/*Set up collapsible-bar with that grid layout so everyhting is side by side (if it ever works*/
+/* lup overview map */
+/* Set up collapsible-bar with that grid layout so everyhting is side by side (if it ever works*/
 .collapsible-bar {
     background-color: #294780;
     display: grid;
