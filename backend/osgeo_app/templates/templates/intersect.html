@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gitanyow Lax’yip Planning Objective Feature Intersect</title>
-    <link rel="stylesheet" href="./static/style.css">
+    <link rel="stylesheet" href="../static/style.css">
 </head>
 <body>
 
@@ -393,6 +393,49 @@
                 document.body.removeChild(link);
             }
         }
+    </script>
+
+    <!-- Background Info Modal -->
+    <div id="backgroundModal" class="modal">
+        <div class="modal-content">
+            <span class="close-background-modal">&times;</span>
+            <h2>Gitanyow Lax'yip Land Use Plan (GLLUP) Background Info</h2>
+            
+            <p>The Gitanyow Lax'Yip Land Use Plan (GLLUP) is an outcome of collaboration between the Gitanyow Nation and the Province of BC dating back to the 1990's. The GLLUP is contained within Schedules A and B of the 2016 Gitanyow Huwilp Recognition and Reconciliation Agreement (RRA), an agreement between the Gitanyow Nation (Gitanyow Hereditary Chiefs and Gitanyow Huwilp Society) and the Province.</p>
+            
+            <p>The GLLUP covers the full extent of the Gitanyow Nation territory (Lax'yip) and overlaps with the following Provincial Land and Resource Management Plans (LRMPs) and Sustainable Resource Management Plans (SRMPs):</p>
+            
+            <ul>
+                <li>Kalum LRMP</li>
+                <li>Kalum SRMP</li>
+                <li>Nass South SRMP</li>
+                <li>Nass North SRMP</li>
+                <li>Skeena LRMP</li>
+                <li>Kispiox LRMP</li>
+                <li>Kispiox SRMP</li>
+                <li>Cranberry SRMP</li>
+            </ul>
+            
+            <p>The LRMPs are high-level, strategic plans that guide the integrated management of different values and resources over large areas, whereas the SRMPs are more detailed, operational-level plans that implement the strategic direction set by LRMPs. The Kalum LRMP and Kalum SRMP as well as the Kispiox LRMP and SRMP were completed in 1996, 2001 and 2006 respectively. The Nass South SRMP and Cranberry SRMP were completed in 2012 alongside the GLLUP collaboration process.</p>
+            
+            <p>Unless otherwise indicated in the GLLUP, management goals, objectives, measures/indicators and targets apply throughout the Gitanyow Lax'yip. Where specified, planning units are referred to as the Cranberry, Kispiox, Nass South, or Kalum planning units and are co-extensive with the Provincial Sustainable Resource Management Planning areas with these names.</p>
+            
+            <p>The GLLUP fully integrates the management objectives and direction of these LRMPs/SRMPs and is fully consistent with them. While the GLLUP can be seen as Gitanyow's stand-alone land use plan, the legal enforcement of management objectives and direction currently rests with the SRMPs at this time.</p>
+        </div>
+    </div>
+
+    <!-- Background Modal Script -->
+    <script src="../static/background-modal.js"></script>
+    <script>
+        console.log('Intersect page loaded, checking for modal...');
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('backgroundModal');
+            console.log('Modal element found:', modal);
+            if (modal) {
+                console.log('Forcing modal display...');
+                modal.style.display = 'block';
+            }
+        });
     </script>
 </body>
 </html>

@@ -274,6 +274,124 @@ body {
     .dropdown:hover .dropdown-content {display:block;}
 }
 
+/* Background Info Section */
+.background-info {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    background-image: 
+        linear-gradient(45deg, transparent 40%, rgba(116, 152, 206, 0.05) 50%, transparent 60%),
+        linear-gradient(-45deg, transparent 40%, rgba(227, 168, 43, 0.03) 50%, transparent 60%);
+    border-bottom: 1px solid #e9ecef;
+    position: relative;
+}
+
+.background-info::before,
+.background-info::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    background: linear-gradient(to bottom, 
+        var(--secondary) 0%, 
+        transparent 20%, 
+        transparent 80%, 
+        var(--secondary) 100%);
+    opacity: 0.1;
+}
+
+.background-info::before {
+    left: 0;
+    background: linear-gradient(to right, 
+        var(--primary-dark) 0%, 
+        transparent 100%);
+}
+
+.background-info::after {
+    right: 0;
+    background: linear-gradient(to left, 
+        var(--primary-dark) 0%, 
+        transparent 100%);
+}
+
+.background-content {
+    max-width: 1800px;
+    margin: 0 auto;
+    text-align: left;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.background-content h2 {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.background-content h3 {
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+}
+
+.background-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: justify;
+}
+
+.plan-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.plan-list li {
+    background-color: #fff;
+    border: 1px solid var(--secondary);
+    border-left: 4px solid var(--accent);
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 800px) {
+    .background-info {
+        padding: 30px 15px;
+    }
+    
+    .background-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .background-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .background-content p {
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    .plan-list {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Discover Section */
 .discover {
     padding: 20px 20px;
@@ -658,4 +776,72 @@ h3.header-style {
 
 #url-input-container button {
     padding: 5px 5px;
+}
+
+/* Background Info Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 10000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.close-background-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-background-modal:hover,
+.close-background-modal:focus {
+    color: #000;
+    text-decoration: none;
+}
+
+.modal h2 {
+    color: var(--primary-dark);
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 10px;
+}
+
+.modal h3 {
+    color: var(--primary-dark);
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.modal p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.modal ul {
+    margin-bottom: 15px;
+    padding-left: 20px;
+}
+
+.modal ul li {
+    margin-bottom: 5px;
 }
