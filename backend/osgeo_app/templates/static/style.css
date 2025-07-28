@@ -278,13 +278,52 @@ body {
 .background-info {
     padding: 40px 20px;
     background-color: #f8f9fa;
+    background-image: 
+        linear-gradient(45deg, transparent 40%, rgba(116, 152, 206, 0.05) 50%, transparent 60%),
+        linear-gradient(-45deg, transparent 40%, rgba(227, 168, 43, 0.03) 50%, transparent 60%);
     border-bottom: 1px solid #e9ecef;
+    position: relative;
+}
+
+.background-info::before,
+.background-info::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100px;
+    background: linear-gradient(to bottom, 
+        var(--secondary) 0%, 
+        transparent 20%, 
+        transparent 80%, 
+        var(--secondary) 100%);
+    opacity: 0.1;
+}
+
+.background-info::before {
+    left: 0;
+    background: linear-gradient(to right, 
+        var(--primary-dark) 0%, 
+        transparent 100%);
+}
+
+.background-info::after {
+    right: 0;
+    background: linear-gradient(to left, 
+        var(--primary-dark) 0%, 
+        transparent 100%);
 }
 
 .background-content {
     max-width: 1000px;
     margin: 0 auto;
     text-align: left;
+    position: relative;
+    z-index: 1;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .background-content h2 {
