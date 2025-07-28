@@ -274,6 +274,85 @@ body {
     .dropdown:hover .dropdown-content {display:block;}
 }
 
+/* Background Info Section */
+.background-info {
+    padding: 40px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.background-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.background-content h2 {
+    font-size: 2rem;
+    color: var(--primary-dark);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.background-content h3 {
+    font-size: 1.4rem;
+    color: var(--primary-dark);
+    margin-top: 25px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+}
+
+.background-content p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: justify;
+}
+
+.plan-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+}
+
+.plan-list li {
+    background-color: #fff;
+    border: 1px solid var(--secondary);
+    border-left: 4px solid var(--accent);
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+@media screen and (max-width: 800px) {
+    .background-info {
+        padding: 30px 15px;
+    }
+    
+    .background-content h2 {
+        font-size: 1.5rem;
+    }
+    
+    .background-content h3 {
+        font-size: 1.2rem;
+    }
+    
+    .background-content p {
+        font-size: 1rem;
+        text-align: left;
+    }
+    
+    .plan-list {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Discover Section */
 .discover {
     padding: 20px 20px;
