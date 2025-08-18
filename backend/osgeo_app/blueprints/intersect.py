@@ -389,6 +389,16 @@ def intersect():
                 intersected_data_5 = None
                 intersected_data_6 = None
                 
+                # Variables to store GeoDataFrames for map display
+                intersected_gdfs = {
+                    'legal_polygons': None,
+                    'legal_lines': None,
+                    'legal_points': None,
+                    'non_legal_polygons': None,
+                    'non_legal_lines': None,
+                    'non_legal_points': None
+                }
+                
                 if data_type == 'legal':
                     try:
                         logger.info(f"[{request_id}] Starting legal data intersect")
@@ -407,6 +417,11 @@ def intersect():
                         intersected_data_4=None
                         intersected_data_5=None
                         intersected_data_6=None
+                        
+                        # Store GeoDataFrames for map display
+                        intersected_gdfs['legal_polygons'] = legal_polys_gdf
+                        intersected_gdfs['legal_lines'] = legal_lines_gdf
+                        intersected_gdfs['legal_points'] = legal_points_gdf
                     except Exception as e:
                         logger.error(f"[{request_id}] Error during legal data intersect: {e}")
                         logger.error(f"[{request_id}] Exception type: {type(e).__name__}")
@@ -437,11 +452,30 @@ def intersect():
                         intersected_data_4=intersected_non_legal_poly_list
                         intersected_data_5=intersected_non_legal_line_list
                         intersected_data_6=intersected_non_legal_point_list
+                        
+                        # Store GeoDataFrames for map display
+                        intersected_gdfs['non_legal_polygons'] = non_polys_gdf
+                        intersected_gdfs['non_legal_lines'] = non_lines_gdf
+                        intersected_gdfs['non_legal_points'] = non_points_gdf
+                        logger.info(f"[{request_id}] Non-legal line results: {len(intersected_non_legal_line_list) if intersected_non_legal_line_list else 0}")
+                        logger.info(f"[{request_id}] Non-legal point results: {len(intersected_non_legal_point_list) if intersected_non_legal_point_list else 0}")
+                        
+                        intersected_data_1=None
+                        intersected_data_2=None
+                        intersected_data_3=None
+                        intersected_data_4=intersected_non_legal_poly_list
+                        intersected_data_5=intersected_non_legal_line_list
+                        intersected_data_6=intersected_non_legal_point_list
+                        
+                        # Store GeoDataFrames for map display
+                        intersected_gdfs['non_legal_polygons'] = non_polys_gdf
+                        intersected_gdfs['non_legal_lines'] = non_lines_gdf
+                        intersected_gdfs['non_legal_points'] = non_points_gdf
                     except Exception as e:
                         logger.error(f"[{request_id}] Error during non-legal data intersect: {e}")
                         logger.error(f"[{request_id}] Exception type: {type(e).__name__}")
                         logger.error(f"[{request_id}] Full traceback: {traceback.format_exc()}")
-                    # Return partial results if some data is available
+                        # Return partial results if some data is available
                         intersected_data_1=None
                         intersected_data_2=None
                         intersected_data_3=None
@@ -460,6 +494,11 @@ def intersect():
                         intersected_data_1=intersected_legal_poly_list
                         intersected_data_2=intersected_legal_line_list
                         intersected_data_3=intersected_legal_point_list
+                        
+                        # Store legal GeoDataFrames for map display
+                        intersected_gdfs['legal_polygons'] = legal_polys_gdf
+                        intersected_gdfs['legal_lines'] = legal_lines_gdf
+                        intersected_gdfs['legal_points'] = legal_points_gdf
                     except Exception as e:
                         logger.error(f"[{request_id}] Error during legal data intersect (both mode): {e}")
                         logger.error(f"[{request_id}] Exception type: {type(e).__name__}")
@@ -478,6 +517,11 @@ def intersect():
                         intersected_data_4=intersected_non_legal_poly_list
                         intersected_data_5=intersected_non_legal_line_list
                         intersected_data_6=intersected_non_legal_point_list
+                        
+                        # Store non-legal GeoDataFrames for map display
+                        intersected_gdfs['non_legal_polygons'] = non_polys_gdf
+                        intersected_gdfs['non_legal_lines'] = non_lines_gdf
+                        intersected_gdfs['non_legal_points'] = non_points_gdf
                     except Exception as e:
                         logger.error(f"[{request_id}] Error during non-legal data intersect (both mode): {e}")
                         logger.error(f"[{request_id}] Exception type: {type(e).__name__}")
@@ -487,6 +531,86 @@ def intersect():
                         intersected_data_6=[]
             
             logger.info(f"[{request_id}] Preparing response data")
+            
+            # Convert uploaded GDF to GeoJSON for map display
+            uploaded_geojson = None
+            if uploaded_gdf is not None and not uploaded_gdf.empty:
+                try:
+                    logger.info(f"[{request_id}] Converting uploaded GDF to GeoJSON")
+                    # Ensure the GDF is in the correct CRS (WGS84) for web mapping
+                    if uploaded_gdf.crs != 'EPSG:4326':
+                        uploaded_gdf_wgs84 = uploaded_gdf.to_crs('EPSG:4326')
+                    else:
+                        uploaded_gdf_wgs84 = uploaded_gdf
+                    uploaded_geojson = uploaded_gdf_wgs84.to_json()
+                    logger.info(f"[{request_id}] Successfully converted uploaded GDF to GeoJSON")
+                except Exception as e:
+                    logger.error(f"[{request_id}] Error converting uploaded GDF to GeoJSON: {e}")
+                    uploaded_geojson = None
+            
+            # Convert intersection results to GeoJSON for map display
+            intersection_geojson = {
+                'legal_polygons': None,
+                'legal_lines': None, 
+                'legal_points': None,
+                'non_legal_polygons': None,
+                'non_legal_lines': None,
+                'non_legal_points': None
+            }
+            
+            # Convert intersection results if they exist and are GeoDataFrames
+            try:
+                if intersected_gdfs['legal_polygons'] is not None and not intersected_gdfs['legal_polygons'].empty:
+                    logger.info(f"[{request_id}] Converting legal polygons to GeoJSON")
+                    if intersected_gdfs['legal_polygons'].crs != 'EPSG:4326':
+                        legal_poly_wgs84 = intersected_gdfs['legal_polygons'].to_crs('EPSG:4326')
+                    else:
+                        legal_poly_wgs84 = intersected_gdfs['legal_polygons']
+                    intersection_geojson['legal_polygons'] = legal_poly_wgs84.to_json()
+                
+                if intersected_gdfs['legal_lines'] is not None and not intersected_gdfs['legal_lines'].empty:
+                    logger.info(f"[{request_id}] Converting legal lines to GeoJSON")
+                    if intersected_gdfs['legal_lines'].crs != 'EPSG:4326':
+                        legal_lines_wgs84 = intersected_gdfs['legal_lines'].to_crs('EPSG:4326')
+                    else:
+                        legal_lines_wgs84 = intersected_gdfs['legal_lines']
+                    intersection_geojson['legal_lines'] = legal_lines_wgs84.to_json()
+                
+                if intersected_gdfs['legal_points'] is not None and not intersected_gdfs['legal_points'].empty:
+                    logger.info(f"[{request_id}] Converting legal points to GeoJSON")
+                    if intersected_gdfs['legal_points'].crs != 'EPSG:4326':
+                        legal_points_wgs84 = intersected_gdfs['legal_points'].to_crs('EPSG:4326')
+                    else:
+                        legal_points_wgs84 = intersected_gdfs['legal_points']
+                    intersection_geojson['legal_points'] = legal_points_wgs84.to_json()
+                
+                if intersected_gdfs['non_legal_polygons'] is not None and not intersected_gdfs['non_legal_polygons'].empty:
+                    logger.info(f"[{request_id}] Converting non-legal polygons to GeoJSON")
+                    if intersected_gdfs['non_legal_polygons'].crs != 'EPSG:4326':
+                        non_legal_poly_wgs84 = intersected_gdfs['non_legal_polygons'].to_crs('EPSG:4326')
+                    else:
+                        non_legal_poly_wgs84 = intersected_gdfs['non_legal_polygons']
+                    intersection_geojson['non_legal_polygons'] = non_legal_poly_wgs84.to_json()
+                
+                if intersected_gdfs['non_legal_lines'] is not None and not intersected_gdfs['non_legal_lines'].empty:
+                    logger.info(f"[{request_id}] Converting non-legal lines to GeoJSON")
+                    if intersected_gdfs['non_legal_lines'].crs != 'EPSG:4326':
+                        non_legal_lines_wgs84 = intersected_gdfs['non_legal_lines'].to_crs('EPSG:4326')
+                    else:
+                        non_legal_lines_wgs84 = intersected_gdfs['non_legal_lines']
+                    intersection_geojson['non_legal_lines'] = non_legal_lines_wgs84.to_json()
+                
+                if intersected_gdfs['non_legal_points'] is not None and not intersected_gdfs['non_legal_points'].empty:
+                    logger.info(f"[{request_id}] Converting non-legal points to GeoJSON")
+                    if intersected_gdfs['non_legal_points'].crs != 'EPSG:4326':
+                        non_legal_points_wgs84 = intersected_gdfs['non_legal_points'].to_crs('EPSG:4326')
+                    else:
+                        non_legal_points_wgs84 = intersected_gdfs['non_legal_points']
+                    intersection_geojson['non_legal_points'] = non_legal_points_wgs84.to_json()
+                
+                logger.info(f"[{request_id}] Successfully converted intersection results to GeoJSON")
+            except Exception as e:
+                logger.error(f"[{request_id}] Error converting intersection results to GeoJSON: {e}")
             
             request_end_time = datetime.now()
             total_duration = (request_end_time - request_start_time).total_seconds()
@@ -500,7 +624,9 @@ def intersect():
                 intersected_data_3=intersected_data_3,
                 intersected_data_4=intersected_data_4,
                 intersected_data_5=intersected_data_5,
-                intersected_data_6=intersected_data_6
+                intersected_data_6=intersected_data_6,
+                uploaded_geojson=uploaded_geojson,
+                intersection_geojson=intersection_geojson
             )
             
         except Exception as e:
@@ -524,6 +650,8 @@ def intersect():
                 intersected_data_4=[],
                 intersected_data_5=[],
                 intersected_data_6=[],
+                uploaded_geojson=None,
+                intersection_geojson=None,
                 error_message=f"An error occurred during processing: {str(e)}"
             )
                 
@@ -537,7 +665,9 @@ def intersect():
         intersected_data_3=None,
         intersected_data_4=None,
         intersected_data_5=None,
-        intersected_data_6=None
+        intersected_data_6=None,
+        uploaded_geojson=None,
+        intersection_geojson=None
     )
     
 @blueprint.route('/get_gdfs', methods=['GET'])
