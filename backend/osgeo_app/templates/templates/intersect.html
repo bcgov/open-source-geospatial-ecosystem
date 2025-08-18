@@ -5,8 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gitanyow Lax’yip Planning Objective Feature Intersect</title>
     <link rel="stylesheet" href="../static/style.css">
+    <style>
+        /* Loading Spinner Styles */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+        
+        .loading-text {
+            color: white;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div style="text-align: center;">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Processing intersection...<br>Please wait</div>
+        </div>
+    </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://apps.gov.bc.ca/pub/geomark/js/geomark.js" ></script>
@@ -14,7 +59,8 @@
 <!-- Header Section -->
 
 <div class="header">
-    <img src="../static/BCID_H_rgb_rev.png" alt="British Columbia Logo" class="logo">
+    <img src="../static/BCID_H_rgb_rev.png"                    // Add checkbox for togglin                    // Add checkbox for toggling
+                    addLayerCheckbox('Intersected Legal Points', legalPointsLayer, '#800080');                    addLayerCheckbox('Intersected Legal Lines', legalLinesLayer, '#008000');lt="British Columbia Logo" class="logo">
     <div class="title">Gitanyow Lax’yip Land Use Planning Tool</div>
     <div class="navbar">
         <div class="dropdown">
@@ -486,6 +532,49 @@
             // This assumes the map variable is available globally from lup_intersect.html
             console.log('Adding intersection results to map...');
             
+            // Store references to intersection layers for toggling
+            const intersectionLayers = {};
+            
+            // Function to add layer to checkbox container
+            function addLayerCheckbox(layerName, layer, color) {
+                const checkboxContainer = document.getElementById('checkbox-container');
+                if (!checkboxContainer) return;
+                
+                const label = document.createElement('label');
+                label.style.display = 'block';
+                label.style.marginBottom = '5px';
+                
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+                checkbox.checked = true;
+                checkbox.id = `checkbox-${layerName.replace(/\s+/g, '-')}`;
+                
+                // Toggle layer and legend on checkbox change
+                checkbox.onchange = function() {
+                    if (this.checked) {
+                        map.addLayer(layer);
+                        if (typeof updateLegend === 'function') {
+                            updateLegend(layerName, color, 0.8, 'add');
+                        }
+                    } else {
+                        map.removeLayer(layer);
+                        if (typeof updateLegend === 'function') {
+                            updateLegend(layerName, color, 0.8, 'remove');
+                        }
+                    }
+                };
+                
+                const span = document.createElement('span');
+                span.textContent = ` ${layerName}`;
+                span.style.marginLeft = '5px';
+                
+                label.appendChild(checkbox);
+                label.appendChild(span);
+                checkboxContainer.appendChild(label);
+                
+                console.log(`Added checkbox for ${layerName}`);
+            }
+            
             // Add uploaded AOI to map
             {% if uploaded_geojson %}
             try {
@@ -503,12 +592,16 @@
                         }
                     }).addTo(map);
                     
+                    // Store layer reference
+                    intersectionLayers['uploadedAOI'] = uploadedLayer;
+                    
                     // Add to legend
                     if (typeof updateLegend === 'function') {
                         updateLegend('Uploaded AOI', '#FF0000', 0.8, 'add');
                     }
                     
-                    // Zoom to uploaded layer bounds
+                    // Add checkbox for toggling
+                    addLayerCheckbox('Intersected AOI', uploadedAoiLayer, '#red');                    // Zoom to uploaded layer bounds
                     map.fitBounds(uploadedLayer.getBounds());
                     console.log('Added uploaded AOI to map');
                 }
@@ -525,7 +618,7 @@
             try {
                 var legalPolygonsData = {{ intersection_geojson.legal_polygons|safe }};
                 if (legalPolygonsData && typeof map !== 'undefined') {
-                    L.geoJSON(legalPolygonsData, {
+                    var legalPolygonsLayer = L.geoJSON(legalPolygonsData, {
                         style: {
                             color: '#0000FF',
                             weight: 2,
@@ -544,10 +637,16 @@
                         }
                     }).addTo(map);
                     
+                    // Store layer reference
+                    intersectionLayers['legalPolygons'] = legalPolygonsLayer;
+                    
                     // Add to legend
                     if (typeof updateLegend === 'function') {
                         updateLegend('Legal Polygons', '#0000FF', 0.6, 'add');
                     }
+                    
+                    // Add checkbox for toggling
+                    addLayerCheckbox('Intersected Legal Polygons', legalPolygonsLayer, '#0000FF');
                     
                     console.log('Added legal polygons to map');
                 }
@@ -561,7 +660,7 @@
             try {
                 var legalLinesData = {{ intersection_geojson.legal_lines|safe }};
                 if (legalLinesData && typeof map !== 'undefined') {
-                    L.geoJSON(legalLinesData, {
+                    var legalLinesLayer = L.geoJSON(legalLinesData, {
                         style: {
                             color: '#00FF00',
                             weight: 3
@@ -578,10 +677,16 @@
                         }
                     }).addTo(map);
                     
+                    // Store layer reference
+                    intersectionLayers['legalLines'] = legalLinesLayer;
+                    
                     // Add to legend
                     if (typeof updateLegend === 'function') {
                         updateLegend('Legal Lines', '#00FF00', 1.0, 'add');
                     }
+                    
+                    // Add checkbox for toggling
+                    addLayerCheckbox('Legal Lines', legalLinesLayer, '#00FF00');
                     
                     console.log('Added legal lines to map');
                 }
@@ -595,7 +700,7 @@
             try {
                 var legalPointsData = {{ intersection_geojson.legal_points|safe }};
                 if (legalPointsData && typeof map !== 'undefined') {
-                    L.geoJSON(legalPointsData, {
+                    var legalPointsLayer = L.geoJSON(legalPointsData, {
                         pointToLayer: function(feature, latlng) {
                             return L.circleMarker(latlng, {
                                 radius: 6,
@@ -618,10 +723,16 @@
                         }
                     }).addTo(map);
                     
+                    // Store layer reference
+                    intersectionLayers['legalPoints'] = legalPointsLayer;
+                    
                     // Add to legend
                     if (typeof updateLegend === 'function') {
                         updateLegend('Legal Points', '#FFFF00', 0.8, 'add');
                     }
+                    
+                    // Add checkbox for toggling
+                    addLayerCheckbox('Legal Points', legalPointsLayer, '#FFFF00');
                     
                     console.log('Added legal points to map');
                 }
@@ -635,7 +746,7 @@
             try {
                 var nonLegalPolygonsData = {{ intersection_geojson.non_legal_polygons|safe }};
                 if (nonLegalPolygonsData && typeof map !== 'undefined') {
-                    L.geoJSON(nonLegalPolygonsData, {
+                    var nonLegalPolygonsLayer = L.geoJSON(nonLegalPolygonsData, {
                         style: {
                             color: '#FF00FF',
                             weight: 2,
@@ -654,10 +765,16 @@
                         }
                     }).addTo(map);
                     
+                    // Store layer reference
+                    intersectionLayers['nonLegalPolygons'] = nonLegalPolygonsLayer;
+                    
                     // Add to legend
                     if (typeof updateLegend === 'function') {
                         updateLegend('Non-Legal Polygons', '#FF00FF', 0.6, 'add');
                     }
+                    
+                    // Add checkbox for toggling
+                    addLayerCheckbox('Intersected Non-Legal Polygons', nonLegalPolygonsLayer, '#FF00FF');
                     
                     console.log('Added non-legal polygons to map');
                 }
@@ -671,7 +788,7 @@
             try {
                 var nonLegalLinesData = {{ intersection_geojson.non_legal_lines|safe }};
                 if (nonLegalLinesData && typeof map !== 'undefined') {
-                    L.geoJSON(nonLegalLinesData, {
+                    var nonLegalLinesLayer = L.geoJSON(nonLegalLinesData, {
                         style: {
                             color: '#00FFFF',
                             weight: 3
@@ -688,10 +805,16 @@
                         }
                     }).addTo(map);
                     
+                    // Store layer reference
+                    intersectionLayers['nonLegalLines'] = nonLegalLinesLayer;
+                    
                     // Add to legend
                     if (typeof updateLegend === 'function') {
                         updateLegend('Non-Legal Lines', '#00FFFF', 1.0, 'add');
                     }
+                    
+                    // Add checkbox for toggling
+                    addLayerCheckbox('Intersected Non-Legal Lines', nonLegalLinesLayer, '#00FFFF');
                     
                     console.log('Added non-legal lines to map');
                 }
@@ -705,7 +828,7 @@
             try {
                 var nonLegalPointsData = {{ intersection_geojson.non_legal_points|safe }};
                 if (nonLegalPointsData && typeof map !== 'undefined') {
-                    L.geoJSON(nonLegalPointsData, {
+                    var nonLegalPointsLayer = L.geoJSON(nonLegalPointsData, {
                         pointToLayer: function(feature, latlng) {
                             return L.circleMarker(latlng, {
                                 radius: 6,
@@ -728,10 +851,16 @@
                         }
                     }).addTo(map);
                     
+                    // Store layer reference
+                    intersectionLayers['nonLegalPoints'] = nonLegalPointsLayer;
+                    
                     // Add to legend
                     if (typeof updateLegend === 'function') {
                         updateLegend('Non-Legal Points', '#FFA500', 0.8, 'add');
                     }
+                    
+                    // Add checkbox for toggling
+                    addLayerCheckbox('Intersected Non-Legal Points', nonLegalPointsLayer, '#FFA500');
                     
                     console.log('Added non-legal points to map');
                 }
@@ -741,6 +870,59 @@
             {% endif %}
             
             {% endif %}
+        });
+    </script>
+
+    <script>
+        // Loading spinner functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[action="/intersect"]');
+            const loadingOverlay = document.getElementById('loading-overlay');
+            
+            if (form && loadingOverlay) {
+                form.addEventListener('submit', function(e) {
+                    // Validate that either a file or URL is provided
+                    const fileInput = document.getElementById('file-upload');
+                    const urlInput = document.getElementById('url-input');
+                    const dataTypeInputs = document.querySelectorAll('input[name="data_type"]');
+                    
+                    let hasFile = fileInput && fileInput.files && fileInput.files.length > 0;
+                    let hasUrl = urlInput && urlInput.value && urlInput.value.trim() !== '';
+                    let hasDataType = dataTypeInputs && Array.from(dataTypeInputs).some(input => input.checked);
+                    
+                    console.log('Form validation:', {
+                        hasFile: hasFile,
+                        hasUrl: hasUrl,
+                        hasDataType: hasDataType,
+                        fileInput: fileInput,
+                        urlInput: urlInput,
+                        dataTypeInputs: dataTypeInputs.length
+                    });
+                    
+                    if (!hasFile && !hasUrl) {
+                        alert('Please select a file or enter a URL');
+                        e.preventDefault();
+                        return false;
+                    }
+                    
+                    if (!hasDataType) {
+                        alert('Please select a data type (Legal, Non-legal, or Both)');
+                        e.preventDefault();
+                        return false;
+                    }
+                    
+                    // Show loading spinner
+                    loadingOverlay.style.display = 'flex';
+                    
+                    // Don't disable form elements - let the form submit naturally
+                    // The loading spinner will show the processing state
+                });
+            }
+            
+            // Hide loading spinner on page load (in case of back button or error)
+            if (loadingOverlay) {
+                loadingOverlay.style.display = 'none';
+            }
         });
     </script>
 </body>
