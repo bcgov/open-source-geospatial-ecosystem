@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, jsonify, Response
 from osgeo_app.cache import cache
 import requests
+import time
 from shapely.geometry import shape, Point, LineString
 from shapely.wkt import loads
 import geojson
@@ -63,10 +64,46 @@ def wfs_query_to_gdf(dataset, query=None, fields=None, bbox=None, offset=0, max_
         params['propertyName'] = ','.join(fields).upper()
 
     all_features = []
+    max_retries = 3
+    retry_delay = 5  # seconds
+    
     while True:
-        response = requests.get(url, params=params, timeout=2000)
-        if response.status_code != 200:
-            raise RuntimeError(f"Error fetching WFS data: {response.status_code} - {response.text}")
+        for attempt in range(max_retries):
+            try:
+                # Reduce timeout to 60 seconds and add retry logic
+                response = requests.get(url, params=params, timeout=60)
+                if response.status_code == 200:
+                    break  # Success, exit retry loop
+                elif response.status_code == 504:
+                    print(f"WFS server timeout (504) on attempt {attempt + 1}/{max_retries}")
+                    if attempt < max_retries - 1:
+                        time.sleep(retry_delay)
+                        continue
+                    else:
+                        print(f"WFS server timeout after {max_retries} attempts. Skipping dataset: {params.get('typeName', 'unknown')}")
+                        return None  # Return None instead of crashing
+                else:
+                    raise RuntimeError(f"Error fetching WFS data: {response.status_code} - {response.text}")
+            except requests.exceptions.Timeout:
+                print(f"Request timeout on attempt {attempt + 1}/{max_retries}")
+                if attempt < max_retries - 1:
+                    time.sleep(retry_delay)
+                    continue
+                else:
+                    print(f"Request timeout after {max_retries} attempts. Skipping dataset: {params.get('typeName', 'unknown')}")
+                    return None  # Return None instead of crashing
+            except requests.exceptions.RequestException as e:
+                print(f"Request error on attempt {attempt + 1}/{max_retries}: {e}")
+                if attempt < max_retries - 1:
+                    time.sleep(retry_delay)
+                    continue
+                else:
+                    print(f"Request failed after {max_retries} attempts. Skipping dataset: {params.get('typeName', 'unknown')}")
+                    return None  # Return None instead of crashing
+        else:
+            # If we get here, all retries failed
+            print(f"All retry attempts failed for dataset: {params.get('typeName', 'unknown')}")
+            return None
 
         # Load GeoJSON data using geojson library for easier manipulation
         try:
@@ -301,50 +338,82 @@ def intersect():
             intersected_data_6 = None
             
             if data_type == 'legal':
-                legal_polys_gdf, intersected_legal_poly_list, \
-                legal_lines_gdf, intersected_legal_line_list, \
-                legal_points_gdf, intersected_legal_point_list = legal_data_intersect(uploaded_gdf)
-                
-                intersected_data_1=intersected_legal_poly_list
-                intersected_data_2=intersected_legal_line_list
-                intersected_data_3=intersected_legal_point_list
-                intersected_data_4=None
-                intersected_data_5=None
-                intersected_data_6=None
+                try:
+                    legal_polys_gdf, intersected_legal_poly_list, \
+                    legal_lines_gdf, intersected_legal_line_list, \
+                    legal_points_gdf, intersected_legal_point_list = legal_data_intersect(uploaded_gdf)
+                    
+                    intersected_data_1=intersected_legal_poly_list
+                    intersected_data_2=intersected_legal_line_list
+                    intersected_data_3=intersected_legal_point_list
+                    intersected_data_4=None
+                    intersected_data_5=None
+                    intersected_data_6=None
+                except Exception as e:
+                    print(f"Error during legal data intersect: {e}")
+                    # Return partial results if some data is available
+                    intersected_data_1=[]
+                    intersected_data_2=[]
+                    intersected_data_3=[]
+                    intersected_data_4=None
+                    intersected_data_5=None
+                    intersected_data_6=None
                 
 
                 
             elif data_type =='non_legal':    
-                non_polys_gdf, intersected_non_legal_poly_list, \
-                non_lines_gdf, intersected_non_legal_line_list, \
-                non_points_gdf, intersected_non_legal_point_list = non_legal_data_intersect(uploaded_gdf)
-                
-                intersected_data_1=None
-                intersected_data_2=None
-                intersected_data_3=None
-                intersected_data_4=intersected_non_legal_poly_list
-                intersected_data_5=intersected_non_legal_line_list
-                intersected_data_6=intersected_non_legal_point_list
+                try:
+                    non_polys_gdf, intersected_non_legal_poly_list, \
+                    non_lines_gdf, intersected_non_legal_line_list, \
+                    non_points_gdf, intersected_non_legal_point_list = non_legal_data_intersect(uploaded_gdf)
+                    
+                    intersected_data_1=None
+                    intersected_data_2=None
+                    intersected_data_3=None
+                    intersected_data_4=intersected_non_legal_poly_list
+                    intersected_data_5=intersected_non_legal_line_list
+                    intersected_data_6=intersected_non_legal_point_list
+                except Exception as e:
+                    print(f"Error during non-legal data intersect: {e}")
+                    # Return partial results if some data is available
+                    intersected_data_1=None
+                    intersected_data_2=None
+                    intersected_data_3=None
+                    intersected_data_4=[]
+                    intersected_data_5=[]
+                    intersected_data_6=[]
                 
 
                 
                 
             elif data_type =='both':
-                legal_polys_gdf, intersected_legal_poly_list, \
-                legal_lines_gdf, intersected_legal_line_list, \
-                legal_points_gdf, intersected_legal_point_list = legal_data_intersect(uploaded_gdf)
+                try:
+                    legal_polys_gdf, intersected_legal_poly_list, \
+                    legal_lines_gdf, intersected_legal_line_list, \
+                    legal_points_gdf, intersected_legal_point_list = legal_data_intersect(uploaded_gdf)
+                    
+                    intersected_data_1=intersected_legal_poly_list
+                    intersected_data_2=intersected_legal_line_list
+                    intersected_data_3=intersected_legal_point_list
+                except Exception as e:
+                    print(f"Error during legal data intersect: {e}")
+                    intersected_data_1=[]
+                    intersected_data_2=[]
+                    intersected_data_3=[]
                 
-                intersected_data_1=intersected_legal_poly_list
-                intersected_data_2=intersected_legal_line_list
-                intersected_data_3=intersected_legal_point_list
-                
-                non_polys_gdf, intersected_non_legal_poly_list, \
-                non_lines_gdf, intersected_non_legal_line_list, \
-                non_points_gdf, intersected_non_legal_point_list = non_legal_data_intersect(uploaded_gdf)             
-                
-                intersected_data_4=intersected_non_legal_poly_list
-                intersected_data_5=intersected_non_legal_line_list
-                intersected_data_6=intersected_non_legal_point_list
+                try:
+                    non_polys_gdf, intersected_non_legal_poly_list, \
+                    non_lines_gdf, intersected_non_legal_line_list, \
+                    non_points_gdf, intersected_non_legal_point_list = non_legal_data_intersect(uploaded_gdf)
+                    
+                    intersected_data_4=intersected_non_legal_poly_list
+                    intersected_data_5=intersected_non_legal_line_list
+                    intersected_data_6=intersected_non_legal_point_list
+                except Exception as e:
+                    print(f"Error during non-legal data intersect: {e}")
+                    intersected_data_4=[]
+                    intersected_data_5=[]
+                    intersected_data_6=[]
                 
             
                 

@@ -114,6 +114,17 @@
             }
         }).addTo(map);
 
+        const zoomToLayer_icon = feather.icons['zoom-in'].toSvg({
+            class: 'feather-icon',
+            width: 25,
+            height: 25
+        });
+
+        // Create zoom to active layers button
+        L.easyButton(zoomToLayer_icon, function(btn, map){
+            fitBoundsToActiveLayers();
+        }, 'Zoom to Active Layers').addTo(map);
+
         function getGeomarkFeature(geomarkId) {
             var baseUrl = 'https://apps.gov.bc.ca/pub/geomark';
             var client = new GeomarkClient(baseUrl);
@@ -427,6 +438,49 @@
                 if (legendItem) legendContent.removeChild(legendItem);
             }
         }
+
+        function fitBoundsToActiveLayers() {
+            const allBounds = [];
+            
+            // Collect bounds from all active WFS layers
+            Object.values(activeLayers).forEach(layer => {
+                if (layer.getLayers && layer.getLayers().length > 0) {
+                    const bounds = layer.getBounds();
+                    if (bounds.isValid()) {
+                        allBounds.push(bounds);
+                    }
+                }
+            });
+            
+            // Also include uploaded layers
+            uploadedLayers.forEach(layer => {
+                if (layer.getBounds) {
+                    const bounds = layer.getBounds();
+                    if (bounds.isValid()) {
+                        allBounds.push(bounds);
+                    }
+                }
+            });
+            
+            if (allBounds.length > 0) {
+                // Combine all bounds into one
+                let combinedBounds = allBounds[0];
+                for (let i = 1; i < allBounds.length; i++) {
+                    combinedBounds = combinedBounds.extend(allBounds[i]);
+                }
+                
+                map.fitBounds(combinedBounds, {
+                    padding: [20, 20], // Add 20px padding around the bounds
+                    maxZoom: 16 // Prevent zooming too close
+                });
+            } else {
+                // If no active layers, show alert or zoom to default extent
+                alert('No active layers to zoom to. Please activate some layers first.');
+                // Or zoom to default Gitanyow area:
+                // map.setView([55.6, -128.9], 8);
+            }
+        }
+
         
         // Toggle layer function updated to pass Popup and Color
         async function layerToggleWFS(checkbox, index) {
