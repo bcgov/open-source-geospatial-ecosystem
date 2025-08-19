@@ -527,6 +527,42 @@
             }
         }
         
+        // Function to zoom to all intersection layers
+        function zoomToIntersectionResults() {
+            try {
+                let allBounds = null;
+                let layerCount = 0;
+                
+                // Collect bounds from all intersection layers
+                Object.values(intersectionLayers).forEach(layer => {
+                    if (layer && typeof layer.getBounds === 'function') {
+                        const bounds = layer.getBounds();
+                        if (bounds.isValid()) {
+                            if (allBounds === null) {
+                                allBounds = bounds;
+                            } else {
+                                allBounds.extend(bounds);
+                            }
+                            layerCount++;
+                        }
+                    }
+                });
+                
+                // Zoom to combined bounds if we have layers
+                if (allBounds && layerCount > 0) {
+                    map.fitBounds(allBounds, {
+                        padding: [20, 20], // Add some padding around the bounds
+                        maxZoom: 16 // Don't zoom in too close
+                    });
+                    console.log(`Zoomed to ${layerCount} intersection layers`);
+                } else {
+                    console.log('No valid layers found for zooming');
+                }
+            } catch (e) {
+                console.error('Error zooming to intersection results:', e);
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             // Get the map instance from the embedded leaflet map
             // This assumes the map variable is available globally from lup_intersect.html
@@ -601,9 +637,11 @@
                     }
                     
                     // Add checkbox for toggling
-                    addLayerCheckbox('Intersected AOI', uploadedAoiLayer, '#red');                    // Zoom to uploaded layer bounds
+                    addLayerCheckbox('Intersected AOI', uploadedLayer, '#FF0000');
+                    
+                    // Zoom to uploaded layer bounds
                     map.fitBounds(uploadedLayer.getBounds());
-                    console.log('Added uploaded AOI to map');
+                    console.log('Added uploaded AOI to map and zoomed to bounds');
                 }
             } catch (e) {
                 console.error('Error adding uploaded AOI to map:', e);
@@ -870,6 +908,12 @@
             {% endif %}
             
             {% endif %}
+            
+            // After all layers are loaded, zoom to show all intersection results
+            setTimeout(function() {
+                zoomToIntersectionResults();
+            }, 500); // Small delay to ensure all layers are fully rendered
+            
         });
     </script>
 
