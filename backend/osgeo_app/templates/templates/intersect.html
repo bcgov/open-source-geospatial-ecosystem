@@ -492,6 +492,9 @@
     
     <!-- GeoJSON Display Script -->
     <script>
+        // Global object to store intersection layer references
+        let intersectionLayers = {};
+        
         // Add updateLegend function for intersection results
         function updateLegend(layerName, color, transparency, action) {
             const legendContent = document.getElementById("legendContent");
@@ -563,13 +566,55 @@
             }
         }
         
+        // Function to clear all previous intersection data
+        function clearPreviousIntersectionData() {
+            try {
+                // Clear all intersection layers from the map
+                if (typeof intersectionLayers !== 'undefined') {
+                    Object.values(intersectionLayers).forEach(layer => {
+                        if (layer && typeof map !== 'undefined' && map.hasLayer(layer)) {
+                            map.removeLayer(layer);
+                        }
+                    });
+                    // Reset the intersectionLayers object
+                    intersectionLayers = {};
+                }
+                
+                // Clear all legend entries
+                const legendContent = document.getElementById("legendContent");
+                if (legendContent) {
+                    legendContent.innerHTML = '';
+                }
+                
+                // Clear all intersection layer checkboxes from the layer selection panel
+                const checkboxContainer = document.getElementById('checkbox-container');
+                if (checkboxContainer) {
+                    // Remove all checkboxes that start with "Intersected"
+                    const intersectedCheckboxes = checkboxContainer.querySelectorAll('label');
+                    intersectedCheckboxes.forEach(label => {
+                        if (label.textContent && label.textContent.includes('Intersected')) {
+                            label.remove();
+                            // Also remove the following <br> if it exists
+                            if (label.nextSibling && label.nextSibling.nodeName === 'BR') {
+                                label.nextSibling.remove();
+                            }
+                        }
+                    });
+                }
+                
+                console.log('Cleared all previous intersection data');
+            } catch (e) {
+                console.error('Error clearing previous intersection data:', e);
+            }
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
+            // Clear any previous intersection data first (in case of browser back button usage)
+            clearPreviousIntersectionData();
+            
             // Get the map instance from the embedded leaflet map
             // This assumes the map variable is available globally from lup_intersect.html
             console.log('Adding intersection results to map...');
-            
-            // Store references to intersection layers for toggling
-            const intersectionLayers = {};
             
             // Function to add layer to checkbox container
             function addLayerCheckbox(layerName, layer, color) {
@@ -633,7 +678,7 @@
                     
                     // Add to legend
                     if (typeof updateLegend === 'function') {
-                        updateLegend('Uploaded AOI', '#FF0000', 0.8, 'add');
+                        updateLegend('Intersected AOI', '#FF0000', 0.8, 'add');
                     }
                     
                     // Add checkbox for toggling
@@ -680,7 +725,7 @@
                     
                     // Add to legend
                     if (typeof updateLegend === 'function') {
-                        updateLegend('Legal Polygons', '#0000FF', 0.6, 'add');
+                        updateLegend('Intersected Legal Polygons', '#0000FF', 0.6, 'add');
                     }
                     
                     // Add checkbox for toggling
@@ -720,11 +765,11 @@
                     
                     // Add to legend
                     if (typeof updateLegend === 'function') {
-                        updateLegend('Legal Lines', '#00FF00', 1.0, 'add');
+                        updateLegend('Intersected Legal Lines', '#00FF00', 1.0, 'add');
                     }
                     
                     // Add checkbox for toggling
-                    addLayerCheckbox('Legal Lines', legalLinesLayer, '#00FF00');
+                    addLayerCheckbox('Intersected Legal Lines', legalLinesLayer, '#00FF00');
                     
                     console.log('Added legal lines to map');
                 }
@@ -766,11 +811,11 @@
                     
                     // Add to legend
                     if (typeof updateLegend === 'function') {
-                        updateLegend('Legal Points', '#FFFF00', 0.8, 'add');
+                        updateLegend('Intersected Legal Points', '#FFFF00', 0.8, 'add');
                     }
                     
                     // Add checkbox for toggling
-                    addLayerCheckbox('Legal Points', legalPointsLayer, '#FFFF00');
+                    addLayerCheckbox('Intersected Legal Points', legalPointsLayer, '#FFFF00');
                     
                     console.log('Added legal points to map');
                 }
@@ -808,7 +853,7 @@
                     
                     // Add to legend
                     if (typeof updateLegend === 'function') {
-                        updateLegend('Non-Legal Polygons', '#FF00FF', 0.6, 'add');
+                        updateLegend('Intersected Non-Legal Polygons', '#FF00FF', 0.6, 'add');
                     }
                     
                     // Add checkbox for toggling
@@ -848,7 +893,7 @@
                     
                     // Add to legend
                     if (typeof updateLegend === 'function') {
-                        updateLegend('Non-Legal Lines', '#00FFFF', 1.0, 'add');
+                        updateLegend('Intersected Non-Legal Lines', '#00FFFF', 1.0, 'add');
                     }
                     
                     // Add checkbox for toggling
@@ -894,7 +939,7 @@
                     
                     // Add to legend
                     if (typeof updateLegend === 'function') {
-                        updateLegend('Non-Legal Points', '#FFA500', 0.8, 'add');
+                        updateLegend('Intersected Non-Legal Points', '#FFA500', 0.8, 'add');
                     }
                     
                     // Add checkbox for toggling
