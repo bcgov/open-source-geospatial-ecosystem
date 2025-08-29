@@ -407,6 +407,9 @@
                 }
             }
         }
+        /*
+        // Commented out to prevent duplicate layer creation
+        // The intersection layers are now handled by the main intersect.html template
         fetch('/get_gdfs')
         .then(response => response.json())
         .then(data => {
@@ -463,6 +466,7 @@
         .catch(error => {
             console.error("Error fetching GeoJSON:", error);
         });
+        */
         
         // Function to fit bounds to all active layers
         function fitBoundsToActiveLayers() {
