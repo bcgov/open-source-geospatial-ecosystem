@@ -4,6 +4,7 @@ import requests
 import time
 import logging
 import traceback
+import threading
 from datetime import datetime
 from shapely.geometry import shape, Point, LineString
 from shapely.wkt import loads
@@ -186,12 +187,27 @@ def intersect_with_wfs(uploaded_gdf, gdf_from_wfs, filter_list=None):
     return intersected_data
 
 def process_wfs_intersection(user_data, dataset, columns, bbox):
+    logger.info(f"Starting WFS intersection for dataset: {dataset}")
     gdf = wfs_query_to_gdf(dataset=dataset, bbox=bbox)
     if gdf is not None:
+        logger.info(f"Retrieved {len(gdf)} features from WFS for {dataset}")
         intersected = intersect_with_wfs(user_data, gdf)
         if intersected is not None:
-            intersected=intersected[[*columns,'geometry', 'OBJECTID']]
-            return intersected, intersected[columns].to_dict(orient='records')
+            logger.info(f"Initial intersection found {len(intersected)} features for {dataset}")
+            intersected = intersected[[*columns,'geometry', 'OBJECTID']]
+            
+            # Simple deduplication based on OBJECTID to handle production environment issues
+            initial_count = len(intersected)
+            intersected = intersected.drop_duplicates(subset=['OBJECTID'], keep='first')
+            final_count = len(intersected)
+            
+            if initial_count != final_count:
+                logger.info(f"Removed {initial_count - final_count} duplicate features from {dataset}")
+            
+            result_dict = intersected[columns].to_dict(orient='records')
+            logger.info(f"Final result for {dataset}: {len(result_dict)} unique features")
+            
+            return intersected, result_dict
     return None, None
 
 def legal_data_intersect(user_data):
@@ -202,6 +218,9 @@ def legal_data_intersect(user_data):
         'LEGAL_FEAT_ATRB_5_VALUE','ENABLING_DOCUMENT_TITLE', 
         'ENABLING_DOCUMENT_URL', 'RSRCE_PLAN_METADATA_LINK'
     ]
+    
+    logger.info("Starting legal data intersection processing")
+    
     # Process intersections for polygons, lines, and points
     legal_polys_gdf, intersected_legal_poly_list = process_wfs_intersection(
         user_data, legal_poly, legal_columns, bba
@@ -212,6 +231,8 @@ def legal_data_intersect(user_data):
     legal_points_gdf, intersected_legal_point_list = process_wfs_intersection(
         user_data, legal_point, legal_columns, bba
     )
+    
+    logger.info(f"Legal data intersection completed")
     
     return (
         legal_polys_gdf, intersected_legal_poly_list, 
@@ -225,6 +246,8 @@ def non_legal_data_intersect(user_data):
         'NON_LEGAL_FEAT_OBJECTIVE', 'ORIGINAL_DECISION_DATE'
     ]
 
+    logger.info("Starting non-legal data intersection processing")
+
     non_polys_gdf, intersected_non_legal_poly_list = process_wfs_intersection(
         user_data, non_poly, non_columns, bba
     )
@@ -234,6 +257,8 @@ def non_legal_data_intersect(user_data):
     non_points_gdf, intersected_non_legal_point_list = process_wfs_intersection(
         user_data, non_point, non_columns, bba
     )
+    
+    logger.info(f"Non-legal data intersection completed")
     
     return (
         non_polys_gdf, intersected_non_legal_poly_list, 
@@ -271,33 +296,49 @@ def read_gpx(data):
     return uploaded_gdf
 
 def read_geomark(data):
+    logger.info(f"Processing geomark URL: {data}")
     url= data.split('/')
     results=[i for i in url if 'gm' in i]
     geomark_id = results[0]
+    logger.info(f"Extracted geomark ID: {geomark_id}")
+    
     format = 'json'  # Desired format: 'json', 'kml', 'gml', 'wkt'
     srid = 4326  # Spatial Reference System Identifier
 
-    url = f'https://apps.gov.bc.ca/pub/geomark/geomarks/{geomark_id}/feature.{format}?srid={srid}'
+    api_url = f'https://apps.gov.bc.ca/pub/geomark/geomarks/{geomark_id}/feature.{format}?srid={srid}'
+    logger.info(f"Geomark API URL: {api_url}")
 
-    response = requests.get(url)
+    response = requests.get(api_url, timeout=30)
+    logger.info(f"Geomark API response status: {response.status_code}")
 
     if response.status_code == 200:
-        geometry_data = response.json()  # or response.text for 'wkt' format
-        print(geometry_data)
+        geometry_data = response.json()
+        logger.info(f"Geomark geometry data keys: {list(geometry_data.keys())}")
+        logger.info(f"Geomark geometry data: {geometry_data}")
     else:
-        print(f'Error fetching data: {response.status_code}')
+        error_msg = f'Error fetching geomark data: {response.status_code}'
+        logger.error(error_msg)
+        raise ValueError(error_msg)
         
     
     if next(iter(geometry_data)) == 'items':
         geo=(geometry_data['items'][0]['geometry'])
+        logger.info("Using 'items' structure for geomark geometry")
     else: 
         geo=(geometry_data['geometry'])
+        logger.info("Using direct 'geometry' structure for geomark geometry")
+    
+    logger.info(f"Extracted geometry string: {geo}")
     
     srid, wkt = geo.split(";")
     srid = int(srid.split("=")[1])
     geometry = loads(wkt)
     
+    logger.info(f"Parsed SRID: {srid}, Geometry type: {geometry.geom_type}")
+    logger.info(f"Geometry bounds: {geometry.bounds}")
+    
     gdf = gpd.GeoDataFrame({"geometry": [geometry]}, crs=f"EPSG:{srid}")
+    logger.info(f"Created GeoDataFrame with CRS: {gdf.crs}, Shape: {gdf.shape}")
     
     return gdf
 
@@ -334,9 +375,22 @@ def intersect():
     request_start_time = datetime.now()
     request_id = f"intersect_{request_start_time.strftime('%Y%m%d_%H%M%S_%f')}"
     
+    # Environment detection for debugging
+    environment_info = {
+        'platform': os.environ.get('PLATFORM', 'unknown'),
+        'hostname': os.environ.get('HOSTNAME', 'unknown'),
+        'worker_class': os.environ.get('WORKER_CLASS', 'unknown'),
+        'workers': os.environ.get('WEB_CONCURRENCY', 'unknown'),
+        'openshift_build': os.environ.get('OPENSHIFT_BUILD_NAME', 'not_openshift'),
+        'gunicorn_workers': os.environ.get('GUNICORN_WORKERS', 'unknown')
+    }
+    
     logger.info(f"[{request_id}] Starting intersect request at {request_start_time}")
+    logger.info(f"[{request_id}] Environment info: {environment_info}")
     logger.info(f"[{request_id}] Request method: {request.method}")
     logger.info(f"[{request_id}] Request headers: {dict(request.headers)}")
+    logger.info(f"[{request_id}] Thread ID: {threading.current_thread().ident}")
+    logger.info(f"[{request_id}] Process ID: {os.getpid()}")
     
     with open(map_path, 'r') as f:
         leaflet_map = f.read()
