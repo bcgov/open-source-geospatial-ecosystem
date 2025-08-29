@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const isReload = isPageReload();
     console.log('Is page reload:', isReload);
     
-    // Check if modal has been shown for this page in this session
-    const modalAlreadyShown = hasModalBeenShown(currentPage);
-    console.log('Modal already shown for', currentPage, ':', modalAlreadyShown);
+    // Check if modal has been shown at all in this session (not per page)
+    const modalAlreadyShown = hasModalBeenShownInSession();
+    console.log('Modal already shown in this session:', modalAlreadyShown);
     
     // Only show modal if:
-    // 1. It hasn't been shown for this page type in this session AND
+    // 1. It hasn't been shown at all in this session AND
     // 2. This is not a page reload/refresh
     if (!modalAlreadyShown && !isReload) {
         // Show the background modal when the page loads
@@ -34,6 +34,15 @@ document.addEventListener('DOMContentLoaded', function() {
             closeBackgroundModal(currentPage);
         });
         console.log('Close button event listener added');
+    }
+    
+    // Set up bottom close button functionality
+    const bottomCloseButton = document.getElementById('closeModalBtn');
+    if (bottomCloseButton) {
+        bottomCloseButton.addEventListener('click', function() {
+            closeBackgroundModal(currentPage);
+        });
+        console.log('Bottom close button event listener added');
     }
     
     // Close modal when clicking outside of it
@@ -101,15 +110,20 @@ function isPageReload() {
     return false;
 }
 
-function hasModalBeenShown(pageType) {
-    const sessionKey = `backgroundModalShown_${pageType}`;
+function hasModalBeenShownInSession() {
+    const sessionKey = 'backgroundModalShown';
     return sessionStorage.getItem(sessionKey) === 'true';
 }
 
+function hasModalBeenShown(pageType) {
+    // Keep this function for backwards compatibility, but now it checks session-wide
+    return hasModalBeenShownInSession();
+}
+
 function markModalAsShown(pageType) {
-    const sessionKey = `backgroundModalShown_${pageType}`;
+    const sessionKey = 'backgroundModalShown';
     sessionStorage.setItem(sessionKey, 'true');
-    console.log('Modal marked as shown for', pageType);
+    console.log('Modal marked as shown for session');
 }
 
 function showBackgroundModal(pageType) {

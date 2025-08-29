@@ -845,3 +845,25 @@ h3.header-style {
 .modal ul li {
     margin-bottom: 5px;
 }
+
+.close-button {
+    background-color: var(--primary-dark);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'BC Sans', sans-serif;
+}
+
+.close-button:hover {
+    background-color: var(--secondary);
+}
+
+.close-button:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
