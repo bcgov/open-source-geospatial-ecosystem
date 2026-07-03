@@ -31,6 +31,7 @@ backend:
   #-- the deployment strategy, can be "Recreate" or "RollingUpdate"
   deploymentStrategy: Recreate
   #-- autoscaling for the component. it is optional and is an object.
+  replicaCount: 3
   autoscaling:
     #-- enable or disable autoscaling.
     enabled: true
@@ -57,11 +58,11 @@ backend:
     #-- resources specific to vault initContainer. it is optional and is an object.
     resources:
       limits:
-        cpu: 50m
-        memory: 50Mi
+        cpu: 166m
+        memory: 682Mi
       requests:
         cpu: 50m
-        memory: 25Mi
+        memory: 256Mi
   #-- the service for the component. for inter namespace communication, use the service name as the hostname.
   service:
     #-- the type of the service. it can be ClusterIP, NodePort, LoadBalancer, ExternalName. ClusterIP is the default and is recommended.
