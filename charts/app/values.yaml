@@ -56,18 +56,18 @@ backend:
       - prod/api-1
       - prod/api-2
     #-- resources specific to vault initContainer. it is optional and is an object.
-    resources:
-      limits:
-        cpu: 166m
-        memory: 1536Mi
-      requests:
-        cpu: 50m
-        memory: 256Mi
+    # resources:
+    #   limits:
+    #     cpu: 166m
+    #     memory: 1536Mi
+    #   requests:
+    #     cpu: 50m
+    #     memory: 256Mi
   #-- the service for the component. for inter namespace communication, use the service name as the hostname.
   resources:
     limits:
       cpu: 166m
-      memory: 682Mi
+      memory: 1536Mi
     requests:
       cpu: 50m
       memory: 256Mi
