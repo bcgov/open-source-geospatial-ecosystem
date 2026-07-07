@@ -66,10 +66,10 @@ backend:
   #-- the service for the component. for inter namespace communication, use the service name as the hostname.
   resources:
     limits:
-      cpu: 166m
-      memory: 1536Mi
+      cpu: 500m
+      memory: 2048Mi
     requests:
-      cpu: 50m
+      cpu: 150m
       memory: 256Mi
   service:
     #-- the type of the service. it can be ClusterIP, NodePort, LoadBalancer, ExternalName. ClusterIP is the default and is recommended.
@@ -77,7 +77,7 @@ backend:
     port: 5000 # this is the service port, where it will be exposed internal to the namespace.
     targetPort: 5000 # this is container port where app listens on
   route:
-    timeout: 300s # This is the timeout before the route returns a 503 error.
+    timeout: 600s # This is the timeout before the route returns a 503 error.
   pdb:
     enabled: false # enable it in PRODUCTION for having pod disruption budget.
     minAvailable: 1 # the minimum number of pods that must be available during the disruption budget.
