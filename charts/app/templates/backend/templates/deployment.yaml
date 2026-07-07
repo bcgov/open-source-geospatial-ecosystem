@@ -9,8 +9,8 @@ spec:
   strategy:
     type: {{ .Values.backend.deploymentStrategy }}
   {{- if not .Values.backend.autoscaling.enabled }}
-  replicas: {{ .Values.backend.replicaCount }}
   {{- end }}
+  replicas: {{ .Values.backend.replicaCount }}
   selector:
     matchLabels:
       {{- include "backend.selectorLabels" . | nindent 6 }}
