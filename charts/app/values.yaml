@@ -66,11 +66,11 @@ backend:
   #-- the service for the component. for inter namespace communication, use the service name as the hostname.
   resources:
     limits:
-      cpu: 500m
+      cpu: 1
       memory: 2048Mi
     requests:
-      cpu: 150m
-      memory: 256Mi
+      cpu: 166m
+      memory: 512Mi
   service:
     #-- the type of the service. it can be ClusterIP, NodePort, LoadBalancer, ExternalName. ClusterIP is the default and is recommended.
     type: ClusterIP
